@@ -17,4 +17,6 @@ After all consideration and discussion, the picks are **(7&nbsp; 8&nbsp; 13)**.
 * Junyu Liu is unanimously elected group leader
 
 ### Tasks for this week:
- * write down the bidding document before 23:59 on 10/10.  
+ * Write down the bidding document before 23:59 on 10/10.  
+ * Decide the time of informal weekly meeting.
+ * Build up our group website.
