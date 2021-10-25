@@ -13,7 +13,8 @@
 ### Tasks for this week:
 - 组员分工
 - **实现一个最原始的具有overlapping的diagram**
-- **Literature Study**
+- **Literature Study** : 重点去找 1. 别人做出来的效果是怎么样的，用于和我们的比较
+                                 2. 一些新的algorithm
 - 整个项目的规划（时间、任务）
 - 对于Interface Design/Implementation的初步构想 （可prototype）
 - 对于Evaluation Survey Design的初步构想（可prototype）
