@@ -13,7 +13,8 @@
   
 #### To be done:
 * Contact students who have done previous work, and get source code from them.
-* Website building.
 * Try the new code we got in the meeting by supervisor.
 * Find related paper which have useful insights in this field.
+* Website building. **DDL:Thursday, 28 October, 4:00 PM**.
+* Ethics checklist. **DDL:Thursday, 28 October, 4:00 PM**.
 
