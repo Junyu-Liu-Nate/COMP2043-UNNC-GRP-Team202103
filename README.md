@@ -5,6 +5,6 @@ Team Member Information:
  - Chenyang Cui   - email: scycc1@nottingham.edu.cn; phone: 15504616588
  - Junyu Liu      - email: scyjl5@nottingham.edu.cn; phone: 15198056282
  - Ke Liu         - emial: ssykl3@nottingham.edu.cn; phone: 18873321456
- - Yuzhe Ruan     - email: scyyr1@nottingham.edu.cn
+ - Yuzhe Ruan     - email: scyyr1@nottingham.edu.cn; phone: 13656675898
  - Yuqing Wang    - email: scyyw7@nottingham.edu.cn; phone: 15337428871
 
