@@ -29,3 +29,6 @@ Some more related
 [基于图卷积的异质网络节点分类方法_谢小杰.pdf](https://github.com/Junyu-Liu-Nate/GRPTeam202103/files/7446104/_.pdf)
 
 [图数据表示与压缩技术综述_张宇.pdf](https://github.com/Junyu-Liu-Nate/GRPTeam202103/files/7446107/_.pdf)
+
+2021/11/13 updates
+[Visualizing complex networks by leveraging community structures.pdf](https://github.com/Junyu-Liu-Nate/GRPTeam202103/files/7531564/huang2020.pdf)
