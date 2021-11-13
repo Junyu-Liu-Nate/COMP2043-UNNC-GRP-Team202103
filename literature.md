@@ -36,7 +36,10 @@ Some more related
 This is a highly related one  
 [Visualizing complex networks by leveraging community structures.pdf](https://github.com/Junyu-Liu-Nate/GRPTeam202103/files/7531564/huang2020.pdf)
   
-Related  
+Algorithm  
 [Low-Latency Graph Streaming using Compressed Purely-Functional Trees.pdf](https://github.com/Junyu-Liu-Nate/GRPTeam202103/files/7531583/3314221.3314598.pdf)  
 
+Overlap  
 [Inferring graph grammars by detecting overlap in frequent subgraphs.pdf](https://github.com/Junyu-Liu-Nate/GRPTeam202103/files/7531584/Inferring.graph.grammars.by.detecting.overlap.in.frequent.subgraphs.pdf)
+
+[Graph compression_save information.pdf](https://github.com/Junyu-Liu-Nate/GRPTeam202103/files/7531657/Graph.compression_save.information.pdf)
