@@ -30,5 +30,5 @@ Some more related
 
 [图数据表示与压缩技术综述_张宇.pdf](https://github.com/Junyu-Liu-Nate/GRPTeam202103/files/7446107/_.pdf)
 
-2021/11/13 updates
+2021/11/13 updates  
 [Visualizing complex networks by leveraging community structures.pdf](https://github.com/Junyu-Liu-Nate/GRPTeam202103/files/7531564/huang2020.pdf)
