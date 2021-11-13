@@ -28,7 +28,15 @@ Some more related
 
 [基于图卷积的异质网络节点分类方法_谢小杰.pdf](https://github.com/Junyu-Liu-Nate/GRPTeam202103/files/7446104/_.pdf)
 
-[图数据表示与压缩技术综述_张宇.pdf](https://github.com/Junyu-Liu-Nate/GRPTeam202103/files/7446107/_.pdf)
+[图数据表示与压缩技术综述_张宇.pdf](https://github.com/Junyu-Liu-Nate/GRPTeam202103/files/7446107/_.pdf)  
 
-2021/11/13 updates  
+
+**2021/11/13 updates**  
+
+This is a highly related one  
 [Visualizing complex networks by leveraging community structures.pdf](https://github.com/Junyu-Liu-Nate/GRPTeam202103/files/7531564/huang2020.pdf)
+  
+Related  
+[Low-Latency Graph Streaming using Compressed Purely-Functional Trees.pdf](https://github.com/Junyu-Liu-Nate/GRPTeam202103/files/7531583/3314221.3314598.pdf)  
+
+[Inferring graph grammars by detecting overlap in frequent subgraphs.pdf](https://github.com/Junyu-Liu-Nate/GRPTeam202103/files/7531584/Inferring.graph.grammars.by.detecting.overlap.in.frequent.subgraphs.pdf)
