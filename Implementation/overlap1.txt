@@ -1,9 +1,0 @@
-filename: test.txt
-number_of_super_vertex: 3
-number_of_edge: 3
-Vertex: 
-A_B_C H_I_E_D_A A_E_F_R 
-Edge:
-A_B_C H_I_E_D_A
-H_I_E_D_A A_E_F_R
-A_B_C A_E_F_R

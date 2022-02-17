@@ -1,1 +1,0 @@
-Implementation codes about project.
