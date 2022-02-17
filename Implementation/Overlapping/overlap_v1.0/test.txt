@@ -1,0 +1,26 @@
+filename: test.txt
+number_of_super_vertex: 29
+number_of_edge: 20
+Vertex: 
+R_X_AE E_K_O AY AW_BA_BJ T_AA_AH AS_AV_AZ AR_AU AJ BB_BF BD BM_BP BN J_M_P BQ V BC_BF_BI AH BK V_Z_AC BP BE T_W BL_BO_BR AN_AQ_AT S A AH_AK C_F K_N_R 
+Edge: 
+R_X_AE AH_AK
+E_K_O T_AA_AH
+AY AS_AV_AZ
+AW_BA_BJ AR_AU
+AW_BA_BJ K_N_R
+AJ BD
+AJ BM_BP
+BB_BF BN
+BM_BP J_M_P
+BM_BP BQ
+BQ V
+BC_BF_BI V_Z_AC
+BC_BF_BI BP
+AH BE
+BK BE
+BK T_W
+T_W BL_BO_BR
+AN_AQ_AT AH_AK
+S C_F
+A K_N_R
