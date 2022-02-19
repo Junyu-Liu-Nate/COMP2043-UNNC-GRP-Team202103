@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>images/alter.png</file>
+        <file>images/diff.png</file>
+        <file>images/download.png</file>
+        <file>images/feedback.png</file>
+        <file>images/icon.png</file>
+    </qresource>
+</RCC>
