@@ -1,0 +1,3 @@
+The file is unique, each entrance of  "Input" button will refresh its content.
+If it's "Random Input", it will catch the content from outside and fill in here.
+If it's "Manual Input", it will catch the content of user's input in ui->textRI->toPlainText().
