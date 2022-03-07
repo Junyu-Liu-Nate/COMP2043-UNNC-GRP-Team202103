@@ -23,14 +23,15 @@ def drawPattern1(overlapNode):
     center = overlapNode.getCenter()
     nodeNum = overlapNode.getNodeNum()
     rotateRate = 360 / nodeNum
-    
+
     i = 0
     centers = []
     for node in nodeList:
         literalsLengthHalf = node.getLiteralsLength() / 2
         rotateAngle = rotateRate * i
         node.setAngle(rotateAngle)
-        nodeCenter = [center[0] + literalsLengthHalf * math.cos(math.radians(rotateAngle)), center[1] + literalsLengthHalf * math.sin(math.radians(rotateAngle))]
+        nodeCenter = [center[0] + literalsLengthHalf * math.cos(math.radians(
+            rotateAngle)), center[1] + literalsLengthHalf * math.sin(math.radians(rotateAngle))]
         node.adjustX(nodeCenter[0])
         node.adjustY(nodeCenter[1])
 
@@ -63,15 +64,15 @@ def drawPattern1(overlapNode):
 overlapNode1 = OverlapNode("ABCD_AEFGHI_AJKLMN")
 
 # Specify the size of figure window
-f,(ax1) = plt.subplots(1,1,figsize=(10,9))
-f.subplots_adjust(hspace=0,wspace=0)
+f, (ax1) = plt.subplots(1, 1, figsize=(10, 9))
+f.subplots_adjust(hspace=0, wspace=0)
 
 drawPattern1(overlapNode1)
 
 
 # Specify the axis settings
 plt.grid(True)
-ax1.set_xlim(-6,6)
-ax1.set_ylim(-6,6)
+ax1.set_xlim(-6, 6)
+ax1.set_ylim(-6, 6)
 
 plt.show()

@@ -38,11 +38,11 @@ class OverlapNode:
     def getCenter(self):
         return [self.__xCenter, self.__yCenter]
 
-    # def getXAnchor(self):
-    #     return self.__nodesContain[0].getXAnchor()
+    def getXAnchor(self):
+        return self.__nodesContain[0].getXAnchor()
 
-    # def getYAnchor(self):
-    #     return self.__nodesContain[0].getYAnchor()
+    def getYAnchor(self):
+        return self.__nodesContain[0].getYAnchor()
 
     def findSubNode(self, nodeName):
         length = len(self.__nodesContain)

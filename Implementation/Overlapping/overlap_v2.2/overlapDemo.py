@@ -239,7 +239,7 @@ drawPattern1(literalsList, center)
 
 # Specify the axis settings
 plt.grid(True)
-ax1.set_xlim(-6, 6)
-ax1.set_ylim(-6, 6)
+ax1.set_xlim(-60, 60)
+ax1.set_ylim(-60, 60)
 
 plt.show()
