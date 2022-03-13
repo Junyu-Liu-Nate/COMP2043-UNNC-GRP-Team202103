@@ -19,10 +19,10 @@ horizonMargin = 0.05
 verticalMargin = 0.1
 horizonMove = 0.09
 verticalMove = 0.15
-first = True;
-num = False;
-onesDigit = False;
-tensDigit = False;
+first = True
+num = False
+onesDigit = False
+tensDigit = False
 
 # Draw Literals
 def drawLiteral(node):
@@ -51,29 +51,29 @@ def drawLiteral(node):
                 bridgePosition1 = [drawPosition[0] + 0.12, drawPosition[1]]
                 bridgePosition2 = [drawPosition[0] + 0.17, drawPosition[1]]
             plt.text(drawPosition[0] - horizonMove, drawPosition[1] - verticalMove, i, fontsize=16)
-            first = False;
-            num = False;
+            first = False
+            num = False
         elif(i.isspace()):
             # move the x coordinate to the previous one
             if(onesDigit):
-                drawPosition[0]-=0.12;
+                drawPosition[0]-=0.12
             elif(tensDigit):
-                drawPosition[0]-=0.17;
+                drawPosition[0]-=0.17
             drawPosition = [drawPosition[0] + (literalInterval * 2) * math.cos(math.radians(rotateAngle)),drawPosition[1] + (literalInterval * 2) * math.sin(math.radians(rotateAngle))]
             plt.text(drawPosition[0] - horizonMove, drawPosition[1] - verticalMove, i, fontsize=16)
-            onesDigit = False;
-            tensDigit = False;
+            onesDigit = False
+            tensDigit = False
         else:
             if (num):
                 drawPosition = bridgePosition2;
-                tensDigit = True;
-                num = False;
+                tensDigit = True
+                num = False
             else:
                 drawPosition = bridgePosition1;
-                onesDigit = True;
-            num = True;
+                onesDigit = True
+            num = True
             plt.text(drawPosition[0] - horizonMove, drawPosition[1] - verticalMove, i, fontsize=10)
-    first = True;
+    first = True
 
 # Draw Rectangle Cover
 def drawRectangle(node, axis):
