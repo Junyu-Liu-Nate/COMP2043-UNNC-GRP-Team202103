@@ -1,4 +1,4 @@
-#[2/28/2022 –3/6/2022]
+# [2/28/2022 –3/6/2022]
 ## Official Meeting:
 - Porting from C++ to python
 - For the input file, use alphabet character and number together instead of the conbination of alphabet character and underline.
