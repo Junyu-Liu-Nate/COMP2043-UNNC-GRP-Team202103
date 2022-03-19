@@ -1,17 +1,6 @@
-# -*- coding: UTF-8 -*-
-# from asyncio.windows_events import NULL
 from tokenize import Double
 from node import Node
 from collections import Counter
-
-# 一个OverlapNode中包含一组Node，他们因为相互Overlap所以视为一组（一个大Node）方便操作
-# 这一组Node存放在__nodesContain中
-# 在读入txt后，首先对OverlapNode中小Node的位置进行计算
-# __nodesContain中的第一个Node作为定位Node，位置为（0，0）角度0，然后其他Node的位置和角度都作为这个定位Node的相对值
-# 然后再使用LayOut Algorithm计算每个Node的位置
-# 然后再通过一个function可视化出来
-# （一个设想，不知道可不可行）
-
 
 class OverlapNode:
 

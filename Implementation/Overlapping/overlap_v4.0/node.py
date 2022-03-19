@@ -1,11 +1,9 @@
-# -*- coding: UTF-8 -*-
 import math
 
 class Node:
 
     def __init__(self, name):
         self.__name = name
-        # 定位点坐标
         self.__xAnchor = 0
         self.__yAnchor = 0
 
@@ -103,10 +101,6 @@ class Node:
         self.__End1Coordinate[1] = self.__xAnchor - halfLiteralsLength * math.sin(math.radians(self.__angle))
         self.__End2Coordinate[0] = self.__xAnchor + halfLiteralsLength * math.cos(math.radians(self.__angle))
         self.__End2Coordinate[1] = self.__xAnchor + halfLiteralsLength * math.sin(math.radians(self.__angle))
-
-    #################
-    # 计算长方体长宽的方法能不能放在这
-    # 然后能不能写一个计算长方体四个角的坐标的方法
 
     # Calculate the length between 1st letter to last letter
     def getLiteralsLength(self):

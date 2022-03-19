@@ -1,4 +1,3 @@
-from tabnanny import check
 import numpy as np
 import math
 from graph import Graph

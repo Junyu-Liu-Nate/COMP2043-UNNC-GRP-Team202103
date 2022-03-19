@@ -16,6 +16,8 @@ from overlapDraw import drawArcCombo
 
 # 2nd Design Pattern - Use circles to highlight the overlapped literals
 # Draw final image (currently including draw edge connections)
+
+
 def drawPattern2(overlapNode, remainNodes, startAngle):
     drawLiteral(overlapNode)
 
@@ -61,6 +63,7 @@ def drawPattern2(overlapNode, remainNodes, startAngle):
 
         i = i + 1
 
+
 #----- Calculate Drawing Settings -----#
 # !!! Additional speration of overlapped part and remaining part is NEEDED !!!
 overlapNode1 = OverlapNode("CDEF_FGHI_KLMN")
@@ -77,11 +80,14 @@ tempNodeAngle = tempNode.getAngle()
 
 # !!! This is just a demonstration of the 1st layer (inner most circle) !!!
 currentRadius = 0.7 + 0.15
-centerDistance = math.sqrt(currentRadius * currentRadius - tempNodeHeight * tempNodeHeight / 4) * 2 + tempNodeWidth
+centerDistance = math.sqrt(currentRadius * currentRadius -
+                           tempNodeHeight * tempNodeHeight / 4) * 2 + tempNodeWidth
 
 overlapNode1Center = overlapNode1.getCenter()
-overlapNode2.setxCenter(overlapNode1Center[0] + centerDistance * math.cos(math.radians(tempNodeAngle)))
-overlapNode2.setyCenter(overlapNode1Center[1] + centerDistance * math.sin(math.radians(tempNodeAngle)))
+overlapNode2.setxCenter(
+    overlapNode1Center[0] + centerDistance * math.cos(math.radians(tempNodeAngle)))
+overlapNode2.setyCenter(
+    overlapNode1Center[1] + centerDistance * math.sin(math.radians(tempNodeAngle)))
 overlapPart2.adjustX(centerDistance * math.cos(math.radians(tempNodeAngle)))
 overlapPart2.adjustY(centerDistance * math.sin(math.radians(tempNodeAngle)))
 
