@@ -17,6 +17,8 @@ from overlapDraw import drawRectangle
 from layoutAlgorithmOverlap import calOverlapLayout
 
 #----- Draw pattern 1 -----#
+
+
 def pattern1Draw(graph, axis):
     overallNodeList = graph.getNodeList()
     edgeList = graph.getEdgeList()
@@ -63,6 +65,8 @@ def pattern1Draw(graph, axis):
         drawEdge(node1, node2)
 
 #----- Draw Pattern 2 -----#
+
+
 def pattern2Draw(graph, axis):
     overallNodeList = graph.getNodeList()
     edgeList = graph.getEdgeList()
@@ -88,12 +92,15 @@ def pattern2Draw(graph, axis):
 
         i = 0
         for node in remainNodeList:
-            drawArcCombo(overlapNodeCenter, radiusList[i], node.getAngle(), node, axis)
+            drawArcCombo(overlapNodeCenter,
+                         radiusList[i], node.getAngle(), node, axis)
             drawPoint(node, axis)
-            allNodeNameList.append([node, overlapPart.getName() + node.getName()]) # muti-overlapped situation is overlooked!
+            # muti-overlapped situation is overlooked!
+            allNodeNameList.append(
+                [node, overlapPart.getName() + node.getName()])
             i = i + 1
         drawLiteral(overlapPart)
-    
+
     # Draw alone nodes and add [nodes, full name] into allNodeNameList
     for node in aloneNodeList:
         drawLiteral(node)
@@ -105,7 +112,7 @@ def pattern2Draw(graph, axis):
     for edge in edgeList:
         nodeName1 = edge[0]
         nodeName2 = edge[1]
-        node1 = allNodeNameList[0][0]   
+        node1 = allNodeNameList[0][0]
         node2 = allNodeNameList[1][0]
         i = 0
         for nodeName in allNodeNameList:
@@ -115,21 +122,25 @@ def pattern2Draw(graph, axis):
                 node2 = nodeName[0]
         drawEdge(node1, node2)
 
+
 #----- Read input file and calculate layout -----#
 graphDemo = Graph()
-graphDemo.readInput("sample_input.txt", 2) # 2 represents pattern 2, NEED aumatic checking!!!
-calOverlapLayout(graphDemo, 2) # 2 represents pattern 2, NEED aumatic checking!!!
+# 2 represents pattern 2, NEED aumatic checking!!!
+graphDemo.readInput("input1.txt", 2)
+# 2 represents pattern 2, NEED aumatic checking!!!
+calOverlapLayout(graphDemo, 2)
 
 #----- Draw Overlapped Layout Graph -----#
 # Specify the size of figure window
-f,(ax1) = plt.subplots(1,1,figsize=(10,9))
-f.subplots_adjust(hspace=0,wspace=0)
+f, (ax1) = plt.subplots(1, 1, figsize=(10, 9))
+f.subplots_adjust(hspace=0, wspace=0)
 
-pattern2Draw(graphDemo, ax1) # 2 represents pattern 2, NEED aumatic checking!!!
+# 2 represents pattern 2, NEED aumatic checking!!!
+pattern2Draw(graphDemo, ax1)
 
 plt.grid(False)
-ax1.set_xlim(-6,6)
-ax1.set_ylim(-6,6)
+ax1.set_xlim(-6, 6)
+ax1.set_ylim(-6, 6)
 
 # plt.savefig('results/test2.jpg')
 plt.show()

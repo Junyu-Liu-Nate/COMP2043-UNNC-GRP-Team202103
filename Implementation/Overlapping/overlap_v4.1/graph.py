@@ -3,6 +3,7 @@ from node import Node
 from overlapNode import OverlapNode
 from overlapNode2 import OverlapNode2
 
+
 class Graph:
 
     def __init__(self):
@@ -13,7 +14,7 @@ class Graph:
         self.__edgeList = []
 
     def readInput(self, fileName, patternNum):
-        with open("inputs/" + fileName, "r") as fileHandler:
+        with open(fileName, "r") as fileHandler:
             # Read nodes
             # 读取一行，这一行包含了所有的node的名字 例：AB_AC_AD E F G
             # 这其中，AB_AC_AD表示这是一个由三个小node overlap后组成的大node，而E,F,G则是三个单独的node
