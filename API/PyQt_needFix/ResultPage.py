@@ -1,7 +1,7 @@
 import PyQt5
 import PyQt5.Qt
 from PyQt5 import Qt, QtGui, QtCore
-from PyQt5.QtCore import pyqtSignal  # PyQt5.QtCore.Qt.AlignCenter
+from PyQt5.QtCore import pyqtSignal, QThread, QMutex  # PyQt5.QtCore.Qt.AlignCenter
 from PyQt5.QtGui import QPixmap, QIcon, QImage
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QStackedWidget, QLabel, QFileDialog, QSplitter, \
     QButtonGroup
@@ -17,11 +17,15 @@ import globalVariable as glv
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.backends.backend_qt5 import NavigationToolbar2QT as NavigationToolbar
 
+# 全局变量
+# figureSR = plt.gcf()
+# canvasSR = FigureCanvas(figureSR)
 
 class resultPage(QWidget):
     sign_toEnter = pyqtSignal()
     sign_showFigure = pyqtSignal()
     ans1Text = "no button"
+    qmutx = QMutex()  # 线程锁
 
     def __init__(self):
         super(resultPage, self).__init__()
@@ -275,29 +279,23 @@ class resultPage(QWidget):
         self.reSizeCanvas()
         self.toolBar = NavigationToolbar(self.canvasSR, self)
         self.toolBar.hide()
-        self.canvasSR.mpl_connect('scroll_event', lambda event: self.zoomEvent(event, self.canvasSR))
-        self.canvasSR.mpl_connect("button_press_event", self.pan)
-        self.canvasSR.mpl_connect("button_release_event", lambda event: self.onRelease(event, self.canvasSR))
+        # self.idScroll = self.canvasSR.mpl_connect('scroll_event', lambda event: self.zoomEvent(event, self.canvasSR))
+        self.idScroll = self.canvasSR.mpl_connect('scroll_event', self.zoomEvent)
+        self.idBtnPress = self.canvasSR.mpl_connect("button_press_event", self.pan)
+        # self.idBtnRelease = self.canvasSR.mpl_connect("button_release_event", lambda event: self.onRelease(event, self.canvasSR))
+        self.idBtnRelease = self.canvasSR.mpl_connect('button_release_event', self.onRelease)
 
-    def zoomEvent(self, event, canvas):
-        # plt.show()
-        # axtemp = event.inaxes
-        # x_min, x_max = axtemp.get_xlim()
-        # y_min, y_max = axtemp.get_ylim()
-        # fanwei = (x_max - x_min) / 10
-        # if event.button == 'up':
-        #     axtemp.set(xlim=(x_min + fanwei, x_max - fanwei))
-        #     axtemp.set(ylim=(y_min + fanwei, y_max - fanwei))
-        # elif event.button == 'down':
-        #     axtemp.set(xlim=(x_min - fanwei, x_max + fanwei))
-        #     axtemp.set(ylim=(y_min - fanwei, y_max + fanwei))
-        # canvas.draw_idle()
+    def zoomEvent(self, event):
+        self.qmutx.lock()
+        self.canvasSR.mpl_disconnect(self.canvasSR.mpl_connect("button_press_event", self.pan))
+
         axtemp = event.inaxes
         x_min, x_max = axtemp.get_xlim()
         y_min, y_max = axtemp.get_ylim()
         fanwei = (x_max - x_min) / 10
         if event.button == 'up':
             plt.cla()
+            # self.canvasSR.mpl_disconnect(self.idBtnPress)
             axtemp.set(xlim=(x_min + fanwei, x_max - fanwei))
             axtemp.set(ylim=(y_min + fanwei, y_max - fanwei))
             zoomRatio = x_max / 6
@@ -305,10 +303,6 @@ class resultPage(QWidget):
             graphDemo = Graph()
             graphDemo.readInput("resource/sample_input2.txt", 2)  # 2 represents pattern 2, NEED aumatic checking!!!
             windowRange = calOverlapLayout(graphDemo, 2)  # window range specifies the coordinate settings
-            # zoomRatio = x_max / 6
-
-            # ----- Draw Overlapped Layout Graph -----#
-            # Specify the size of figure window
 
             pattern2Draw(graphDemo, axtemp, zoomRatio)
 
@@ -332,16 +326,10 @@ class resultPage(QWidget):
             graphDemo = Graph()
             graphDemo.readInput("resource/sample_input2.txt", 2)  # 2 represents pattern 2, NEED aumatic checking!!!
             windowRange = calOverlapLayout(graphDemo, 2)  # window range specifies the coordinate settings
-            # zoomRatio = x_max / 6
-
-            # ----- Draw Overlapped Layout Graph -----#
-            # Specify the size of figure window
 
             pattern2Draw(graphDemo, axtemp, zoomRatio)
 
             plt.grid(False)
-            # ax1.set_xlim(-6,6)
-            # ax1.set_ylim(-6,6)
 
             for i in range(self.layoutSR.count()):  # 用这个把layoutSR中的控件删干净
                 self.layoutSR.itemAt(i).widget().deleteLater()
@@ -350,19 +338,29 @@ class resultPage(QWidget):
             self.canvasSR = FigureCanvas(self.figureSR)
             self.layoutSR.addWidget(self.canvasSR, 4)
 
-        canvas.draw_idle()
+        self.canvasSR.mpl_connect("button_press_event", self.pan)
+        self.qmutx.unlock()
 
 
     def pan(self, event):
+        self.qmutx.lock()
         print("pan")
         if event.button == 1:
+            self.toolBar = NavigationToolbar(self.canvasSR, self)
+            self.toolBar.hide()
             self.toolBar.pan()
         else:
             pass
+        self.qmutx.unlock()
 
-    def onRelease(self, event, canvas):
+    # def onRelease(self, event, canvas):
+    def onRelease(self, event):
         print("release")
-        canvas.mpl_disconnect(canvas.mpl_connect("button_press_event", self.pan))
+        self.canvasSR.mpl_disconnect(self.canvasSR.mpl_connect("button_press_event", self.pan))
+        # self.canvasSR.mpl_disconnect(self.idBtnPress)
+        # del(self._pan_start)
+        if hasattr(self, '_pan_start'):
+            del self._pan_start
 
     def reSizeCanvas(self):
         height = self.stackedWidget.height()
@@ -371,3 +369,11 @@ class resultPage(QWidget):
             self.layoutSR.setContentsMargins((width-height)/2, 0, (width-height)/2, 0)
         else:
             self.layoutSR.setContentsMargins(0, (height-width)/2, 0, (height-width)/2)
+
+
+
+# class ZoomThread(QThread):
+#     def __init__(self):
+#         super().__init__()
+#
+#     def run(self):

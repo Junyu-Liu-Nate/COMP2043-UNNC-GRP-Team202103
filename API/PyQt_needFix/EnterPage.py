@@ -6,7 +6,6 @@ from PyQt5.QtGui import QPixmap, QIcon
 from PyQt5.QtCore import pyqtSignal, QFileInfo, QUrl
 from matplotlib import pyplot as plt
 
-from ResultPage import resultPage
 import overlapDef
 from widgetsCreator import createBtn, createText, createRadioBtn, createLabPix, createHTML50, createHTML200, \
     createHTML150, createHTML25

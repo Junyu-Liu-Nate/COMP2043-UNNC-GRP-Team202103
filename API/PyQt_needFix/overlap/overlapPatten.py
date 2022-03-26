@@ -116,7 +116,7 @@ def pattern2Draw(graph, axis, zoomRatio):
         drawEdge(node1, node2)
 
 #----- Read input file and calculate layout -----#
-patternNum = input("Please enter the pattern number: ")
+# patternNum = input("Please enter the pattern number: ")
 
 # graphDemo = Graph()
 # graphDemo.readInput("sample_input2.txt", patternNum) # 2 represents pattern 2, NEED aumatic checking!!!
