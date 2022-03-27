@@ -13,7 +13,7 @@ def figureCub():
 # return figure to canvas
 def figureCirc():
     graphDemo = Graph()
-    graphDemo.readInput("resource/sample_input.txt", 2)  # represent pattern 2
+    graphDemo.readInput("resource/random_input.txt", 2)  # represent pattern 2
     calOverlapLayout(graphDemo, 2)  # represent pattern 2
 
     f, (ax1) = plt.subplots(1, 1, figsize=(10, 9))
@@ -22,7 +22,7 @@ def figureCirc():
     pattern2Draw(graphDemo, ax1)
 
     plt.grid(False)
-    ax1.set_xlim(-6, 6)
+    ax1.set_xlim(-12, 12)
     ax1.set_ylim(-6, 6)
 
     return plt.gcf()

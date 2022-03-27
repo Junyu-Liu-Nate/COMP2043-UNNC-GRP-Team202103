@@ -251,19 +251,19 @@ class resultPage(QWidget):
         for i in range(self.layoutSR.count()):  # 用这个把layoutSR中的控件删干净
             self.layoutSR.itemAt(i).widget().deleteLater()
         # self.layoutSR.setAlignment(Qt.AlignCenter)  # 直接挂了...
-        if glv.get("cub") == "true":
-            if glv.get("circ") == "false":
-                print("set cub")
-                self.figureSR = overlapDef.figureCub()
-                self.canvasSR = FigureCanvas(self.figureSR)
-                self.layoutSR.addWidget(self.canvasSR, 4)
-                # self.layoutSR.setAlignment(Qt.AlignCenter)
-        if glv.get("circ") == "true":
-            if glv.get("cub") == "false":
-                print("set circ")
-                self.figureSR = overlapDef.figureCirc()
-                self.canvasSR = FigureCanvas(self.figureSR)
-                self.layoutSR.addWidget(self.canvasSR, 4)
+        # if glv.get("cub") == "true":
+        #     if glv.get("circ") == "false":
+        #         print("set cub")
+        #         self.figureSR = overlapDef.figureCub()
+        #         self.canvasSR = FigureCanvas(self.figureSR)
+        #         self.layoutSR.addWidget(self.canvasSR, 4)
+        #         # self.layoutSR.setAlignment(Qt.AlignCenter)
+        # if glv.get("circ") == "true":
+        #     if glv.get("cub") == "false":
+        #         print("set circ")
+        self.figureSR = overlapDef.figureCirc()
+        self.canvasSR = FigureCanvas(self.figureSR)
+        self.layoutSR.addWidget(self.canvasSR, 4)
                 # self.layoutSR.setAlignment(Qt.AlignCenter)
         self.canvasSettings()
 
@@ -283,10 +283,10 @@ class resultPage(QWidget):
         fanwei = (x_max - x_min) / 10
         if event.button == 'up':
             axtemp.set(xlim=(x_min + fanwei, x_max - fanwei))
-            axtemp.set(ylim=(y_min + fanwei, y_max - fanwei))
+            axtemp.set(ylim=(y_min + fanwei/2, y_max - fanwei/2))
         elif event.button == 'down':
             axtemp.set(xlim=(x_min - fanwei, x_max + fanwei))
-            axtemp.set(ylim=(y_min - fanwei, y_max + fanwei))
+            axtemp.set(ylim=(y_min - fanwei/2, y_max + fanwei/2))
         canvas.draw_idle()
 
     def pan(self, event):
@@ -303,7 +303,7 @@ class resultPage(QWidget):
     def reSizeCanvas(self):
         height = self.stackedWidget.height()
         width = self.stackedWidget.width()
-        if width > height:
-            self.layoutSR.setContentsMargins((width-height)/2, 0, (width-height)/2, 0)
+        if width > 2*height:  # too long figure
+            self.layoutSR.setContentsMargins((width-2*height)/2, 0, (2*width-2*height)/2, 0)
         else:
-            self.layoutSR.setContentsMargins(0, (height-width)/2, 0, (height-width)/2)
+            self.layoutSR.setContentsMargins(0, (2*height-width)/2, 0, (2*height-width)/2)

@@ -216,7 +216,7 @@ def reorganizeList(lst, pos, overlappingLiteralsNum):
 
 
 def printToFile(input):
-    fileHandler = open("random_input.txt", "w")
+    fileHandler = open("resource/random_input.txt", "w")
     fileHandler.write(input)
     fileHandler.close()
 
