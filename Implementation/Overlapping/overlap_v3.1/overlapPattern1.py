@@ -64,7 +64,7 @@ overlapNodeList = graphDemo.getNodeList()
 overlapNodeDemo1 = overlapNodeList[0]
 overlapNodeDemo2 = overlapNodeList[1]
 
-tempNode = overlapNodeDemo1.findSubNode("ABCD")
+tempNode = overlapNodeDemo1.findSubNode("A1BC1D")
 tempNodeEnd2 = tempNode.getEnd2Coordinate()
 overlapNodeDemo2.setxCenter(tempNodeEnd2[0])
 overlapNodeDemo2.setyCenter(tempNodeEnd2[1])
