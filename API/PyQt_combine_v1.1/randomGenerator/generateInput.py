@@ -174,6 +174,7 @@ def generateInput(seed: int):
                 input = input + nodesGenerated[i] + \
                     " " + nodesGenerated[j] + "\n"
 
+    input = deleteDigits(input)
     # Print input to the file
     printToFile(input)
 
@@ -219,6 +220,19 @@ def printToFile(input):
     fileHandler = open("resource/random_input.txt", "w")
     fileHandler.write(input)
     fileHandler.close()
+    
+def deleteDigits(input):
+    input = input.replace('0','')
+    input = input.replace('1','')
+    input = input.replace('2','')
+    input = input.replace('3','')
+    input = input.replace('4','')
+    input = input.replace('5','')
+    input = input.replace('6','')
+    input = input.replace('7','')
+    input = input.replace('8','')
+    input = input.replace('9', '')
+    return input
 
 
 if __name__ == '__main__':
