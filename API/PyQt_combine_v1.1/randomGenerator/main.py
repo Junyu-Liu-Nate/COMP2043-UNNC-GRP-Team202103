@@ -1,7 +1,9 @@
 import tkinter as tk
 import tkinter.messagebox
 import random
+from tkinter import *
 from generateInput import generateInput
+
 
 
 def rgGUI():
@@ -44,8 +46,23 @@ def rgGUI():
                     windowShow.geometry('1230x800')
                     with open("resource/random_input.txt", "r") as f:
                         data = f.read()
-                    w = tk.Label(windowShow, text=data, font=('verdana', 14))
-                    w.pack()
+
+                    scroll_v = Scrollbar(windowShow)
+                    scroll_v.pack(side=RIGHT, fill="y")
+
+                    # Add a Horizontal Scrollbar
+                    scroll_h = Scrollbar(windowShow, orient=HORIZONTAL)
+                    scroll_h.pack(side=BOTTOM, fill="x")
+                    # Add a Text widget
+                    text = Text(windowShow, height=500, width=350, yscrollcommand=scroll_v.set,
+                                xscrollcommand=scroll_h.set, wrap=NONE, font=('Helvetica 15'))
+                    text.pack(fill=BOTH, expand=0)
+                    text.insert(END, data)
+                    text.configure(state='disabled')
+
+                    # Attact the scrollbar with the text widget
+                    scroll_h.config(command=text.xview)
+                    scroll_v.config(command=text.yview)
                 return
 
         tkinter.messagebox.showwarning(
