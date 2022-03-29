@@ -234,6 +234,36 @@ def deleteDigits(input):
     input = input.replace('9', '')
     return input
 
+def partiallyDeleteDigits(input):
+    flagInitial = True
+    i = 0
+
+    while True:
+        if i == len(input):
+            break
+
+        if flagInitial == True:
+            if input[i].isdigit():
+                input = input[0:i]+input[i+1:]
+                i = i-1
+
+        if input[i] == '_':
+            flagInitial = False
+            input = input[0:i+2]+input[i+3:]
+
+        if input[i] == ' ':
+            flagInitial = True
+            if input[i:].find('_') == -1:
+                flagInitial = False
+
+        if input[i] == '\n':
+            input = input[0:i]
+            break
+
+        i = i+1
+
+    return input
+
 
 if __name__ == '__main__':
     generateInput(52732)
