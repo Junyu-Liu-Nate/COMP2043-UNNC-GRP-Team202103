@@ -116,8 +116,8 @@ def pattern2Draw(graph, axis, zoomRatio):
         drawEdge(node1, node2)
 
 #----- Read input file and calculate layout -----#
-patternNum = input("Please enter the pattern number: ")
-
+#patternNum = input("Please enter the pattern number: ")
+pattern
 graphDemo = Graph()
 graphDemo.readInput("sample_input2.txt", patternNum)
 windowRange = calOverlapLayout(graphDemo, patternNum)

@@ -174,7 +174,7 @@ def generateInput(seed: int):
                 input = input + nodesGenerated[i] + \
                     " " + nodesGenerated[j] + "\n"
 
-    input = deleteDigits(input)
+    input = partiallyDeleteDigits(input)
     # Print input to the file
     printToFile(input)
 

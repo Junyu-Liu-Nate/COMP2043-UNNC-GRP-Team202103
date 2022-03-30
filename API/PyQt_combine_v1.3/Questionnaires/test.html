@@ -1,0 +1,29 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>菜鸟教程(runoob.com)</title>
+</head>
+<body>
+<!--	<form action="welcome.php" method="post" onSubmit="return download()">-->
+<form action="welcome.php" method="post" onSubmit="return download()">
+	名字：<input type="text" name="fname">
+	年龄：<input type="text" name="fage">
+	<input type="submit" value="提交">
+</form>
+<script type="text/javascript">
+	function download()
+	{
+		var data = document.getElementsByName("fname")[0].value;
+		if(!window.localStorage)
+		{
+			alert("浏览器不支持localStorage");
+			return false;
+		}
+		else
+		{
+			alert("支持捏")
+		}
+	}
+</script>
+</body>
+</html>
