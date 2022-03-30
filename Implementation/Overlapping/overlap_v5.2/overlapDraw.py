@@ -21,8 +21,8 @@ horizonMove = 0.09
 verticalMove = 0.15
 first = True;
 num = False;
-onesDigit = False;
-tensDigit = False;
+onesDigit = False
+tensDigit = False
 
 # # Draw Literals
 # def drawLiteral(node):
@@ -50,6 +50,7 @@ tensDigit = False;
 # Draw Literals
 # Note that [-6,-6] corresponds to font size 16; and the ratio of main character and suffix is 1.6:1
 def drawLiteral(node, zoomratio):
+    global num, onesDigit, tensDigit  # check one digit or two digits
     literals = node.getName()
     literalsLength = node.getLiteralsLength()
     centerX = node.getXAnchor()
@@ -65,40 +66,41 @@ def drawLiteral(node, zoomratio):
         drawLiterals.append(" ")
     # print(drawLiterals)
     drawLiterals.pop(len(drawLiterals) - 1)
+    onesDigit = False
+    tensDigit = False
     
     # Draw literals one by one along the rotateAngle
     for i in drawLiterals:
-        global num, onesDigit, tensDigit; # check one digit or two digits
         if(i.isalpha()):
-            global first;   # the position is calculated at the first time so no need to calculate again.
+            global first   # the position is calculated at the first time so no need to calculate again.
             if(not first):
                 drawPosition = [drawPosition[0] + (literalInterval * 2) * math.cos(math.radians(rotateAngle)), drawPosition[1] + (literalInterval * 2) * math.sin(math.radians(rotateAngle))]
             bridgePosition1 = [drawPosition[0] + 0.12, drawPosition[1]]
             bridgePosition2 = [drawPosition[0] + 0.17, drawPosition[1]]
             plt.text(drawPosition[0] - horizonMove, drawPosition[1] - verticalMove, i, fontsize= 16 / zoomratio)
-            first = False;
-            num = False;
+            first = False
+            num = False
         elif(i.isspace()):
             # move the x coordinate to the previous one
             if(onesDigit):
-                drawPosition[0]-=0.12;
+                drawPosition[0]-=0.12
             elif(tensDigit):
-                drawPosition[0]-=0.17;
+                drawPosition[0]-=0.17
             drawPosition = [drawPosition[0] + (literalInterval * 2) * math.cos(math.radians(rotateAngle)),drawPosition[1] + (literalInterval * 2) * math.sin(math.radians(rotateAngle))]
             plt.text(drawPosition[0] - horizonMove, drawPosition[1] - verticalMove, i, fontsize=16 / zoomratio)
-            onesDigit = False;
-            tensDigit = False;
+            onesDigit = False
+            tensDigit = False
         else:
             if (num):
-                drawPosition = bridgePosition2;
-                tensDigit = True;
-                num = False;
+                drawPosition = bridgePosition2
+                tensDigit = True
+                num = False
             else:
-                drawPosition = bridgePosition1;
-                onesDigit = True;
-            num = True;
+                drawPosition = bridgePosition1
+                onesDigit = True
+            num = True
             plt.text(drawPosition[0] - horizonMove, drawPosition[1] - verticalMove, i, fontsize=10 / zoomratio)
-    first = True;
+    first = True
 
 # Draw Rectangle Cover
 def drawRectangle(node, axis):
