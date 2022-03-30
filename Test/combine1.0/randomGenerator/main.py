@@ -44,7 +44,7 @@ def rgGUI():
                     windowShow = tk.Tk()
                     windowShow.title('Random Input Result')
                     windowShow.geometry('1230x800')
-                    with open("resource/random_input.txt", "r") as f:
+                    with open("resource/sample_input.txt", "r") as f:
                         data = f.read()
 
                     scroll_v = Scrollbar(windowShow)
