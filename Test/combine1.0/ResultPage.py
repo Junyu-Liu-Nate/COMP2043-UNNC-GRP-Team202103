@@ -348,8 +348,8 @@ class resultPage(QWidget):
             zoomRatio = x_max / 6
 
             graphDemo = Graph()
-            graphDemo.readInput("resource/sample_input2.txt", 2)  # 2 represents pattern 2, NEED aumatic checking!!!
-            windowRange = calOverlapLayout(graphDemo, 2)  # window range specifies the coordinate settings
+            graphDemo.readInput("resource/sample_input.txt", 1)  # 2 represents pattern 2, NEED aumatic checking!!!
+            windowRange = calOverlapLayout(graphDemo, 1)  # window range specifies the coordinate settings
 
             pattern1Draw(graphDemo, axtemp, zoomRatio)
 
@@ -366,15 +366,23 @@ class resultPage(QWidget):
         self.qmutx.unlock()
 
     def pan(self, event):
+        self.qmutx.lock()
         print("pan")
         if event.button == 1:
+            self.toolBar = NavigationToolbar(self.canvasSR, self)
+            self.toolBar.hide()
             self.toolBar.pan()
         else:
             pass
+        self.qmutx.unlock()
 
     def onRelease(self, event, canvas):
         print("release")
-        canvas.mpl_disconnect(canvas.mpl_connect("button_press_event", self.pan))
+        self.canvasSR.mpl_disconnect(self.canvasSR.mpl_connect("button_press_event", self.pan))
+        # self.canvasSR.mpl_disconnect(self.idBtnPress)
+        # del(self._pan_start)
+        if hasattr(self, '_pan_start'):
+            del self._pan_start
 
     def reSizeCanvas(self):
         height = self.stackedWidget.height()
