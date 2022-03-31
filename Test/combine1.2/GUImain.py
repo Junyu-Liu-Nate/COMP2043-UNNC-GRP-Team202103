@@ -1,6 +1,5 @@
 import sys
 
-from PyQt5 import QtWidgets, QtGui
 from PyQt5.QtWidgets import QApplication
 
 from EnterPage import enterPage
@@ -19,12 +18,6 @@ if __name__ == "__main__":
     enter.sign_toResult.connect(result.method_handle_sign)  # 不要加括号
     result.sign_toEnter.connect(enter.method_handle_sign)
 
-    # 进入动画
-    # app = QtWidgets.QApplication(sys.argv)
-    # splash = QtWidgets.QSplashScreen(QtGui.QPixmap("resource/sample.jpg"))
-    # splash.show()
-    # splash.showMessage("processing...")
-    # splash.close()
 
     enter.show()
 

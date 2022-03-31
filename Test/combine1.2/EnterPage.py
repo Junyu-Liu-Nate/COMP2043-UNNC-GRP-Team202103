@@ -1,21 +1,12 @@
-import PyQt5.Qt
-from PyQt5 import Qt, QtCore
-from PyQt5.QtWebEngineWidgets import QWebEngineView
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import QPixmap, QIcon
 from PyQt5.QtCore import pyqtSignal, QFileInfo, QUrl
-from matplotlib import pyplot as plt
 
-from ResultPage import resultPage
-import overlapDef
 from widgetsCreator import createBtn, createText, createRadioBtn, createLabPix, createHTML50, createHTML200, \
     createHTML150, createHTML25
 
-from PyQt5.QtCore import Qt
 
-import globalVariable as glv
 from randomGenerator.main import rgGUI
-glv._init()
 
 
 # 改单击拖动，双击打开新窗口

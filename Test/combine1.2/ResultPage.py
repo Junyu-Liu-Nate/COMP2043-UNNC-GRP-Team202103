@@ -5,7 +5,7 @@ from PyQt5.QtCore import pyqtSignal, QUrl, QFileInfo, QMutex  # PyQt5.QtCore.Qt.
 from PyQt5.QtGui import QPixmap, QIcon, QImage
 from PyQt5.QtWebEngineWidgets import QWebEngineView
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QStackedWidget, QLabel, QFileDialog, QSplitter, \
-    QButtonGroup
+    QButtonGroup, QMessageBox
 from matplotlib import pyplot as plt
 from matplotlib.pyplot import figure
 
@@ -14,7 +14,6 @@ from overlap.graph import Graph
 from overlap.layoutAlgorithmOverlap import calOverlapLayout
 from overlap.overlapPatten import pattern1Draw, pattern2Draw
 from widgetsCreator import createLabPix, createToolBtn, createText, createRadioBtn, createBtn
-import globalVariable as glv
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.backends.backend_qt5 import NavigationToolbar2QT as NavigationToolbar
 
@@ -58,7 +57,7 @@ class resultPage(QWidget):
         # 最上方的按钮们
         btnSD = createToolBtn("Show DIFF", "resource/diff.png")
         btnAS = createToolBtn("Alter Style", "resource/alter.png")
-        btnSR = createToolBtn("Show Result", "resource/result.png")
+        self.btnSR = createToolBtn("Show Result", "resource/result.png")
         btnFB = createToolBtn("Feedback", "resource/feedback.png")
         btnEX = createToolBtn("Export", "resource/download.png")
         btnEX.setCheckable(False)  # 不检查选中
@@ -67,13 +66,13 @@ class resultPage(QWidget):
         btnGrp = QButtonGroup(self)  # 这个self不能少
         btnGrp.addButton(btnSD)
         btnGrp.addButton(btnAS)
-        btnGrp.addButton(btnSR)
-        btnSR.setChecked(True)  # 最开始这个就是开启的
+        btnGrp.addButton(self.btnSR)
+        self.btnSR.setChecked(True)  # 最开始这个就是开启的
         btnGrp.addButton(btnFB)
         btnGrp.setExclusive(True)  # 设置按扭间checked状态互斥
         layoutBtn.addWidget(btnSD, 1)
         layoutBtn.addWidget(btnAS, 1)
-        layoutBtn.addWidget(btnSR, 1)
+        layoutBtn.addWidget(self.btnSR, 1)
         layoutBtn.addWidget(btnFB, 1)
         layoutBtn.addWidget(btnEX, 1)
         layoutBtn.addWidget(btnEP, 1)
@@ -167,7 +166,7 @@ class resultPage(QWidget):
         # 这只是一个按钮，点击之后可以返回Enter Page
 
         """Button Clicked Effects"""
-        btnSR.clicked.connect(self.click_goSR)  # 不要加括号
+        self.btnSR.clicked.connect(self.click_goSR)  # 不要加括号
         btnSD.clicked.connect(self.click_goSD)
         btnAS.clicked.connect(self.click_goAS)
         btnFB.clicked.connect(self.click_goFB)
@@ -176,8 +175,8 @@ class resultPage(QWidget):
         # btnFBover.clicked.connect(self.click_submit)
 
         """radioButton Checked Effects"""
-        self.btnASCub.toggled.connect(self.set_globalCub)
-        self.btnASCirc.toggled.connect(self.set_globalCirc)
+        self.btnASCub.toggled.connect(self.set_figureCub)
+        self.btnASCirc.toggled.connect(self.set_sigureCirc)
 
         #self.ansFBRadio1.toggled.connect(lambda: self.writeBtnFB(self.ansFBRadio1.text()))
         #self.ansFBRadio2.toggled.connect(lambda: self.writeBtnFB(self.ansFBRadio2.text()))
@@ -215,79 +214,92 @@ class resultPage(QWidget):
         self.sign_toEnter.emit()  # 发射信号, 返回Enter Page, 别打错字了
         self.hide()
 
-    def set_globalCub(self):
+    def set_figureCub(self):
         if self.btnASCub.isChecked():
             if self.btnASCirc.isChecked() is not True:
-                glv.set("cub", "true")
-                glv.set("circ", "false")
+                with open("resource/sample_input.txt", "r") as patternSeclect:
+                    if (patternSeclect.read(1) == '#'):
+                        self.patternNum = 1
+                        print("change cub to cub is ok")
+                        self.figureSR = overlapDef.printCub()
+                    else:
+                        self.patternNum = 2
+                        print("change circ to cub is not ok")
+                        alert = QMessageBox(QMessageBox.Warning, "Warning", "This will violate the code, selection failed")
+                        alert.exec_()
         if self.btnASCirc.isChecked():
             if self.btnASCub.isChecked() is not True:
-                glv.set("cub", "false")
-                glv.set("circ", "true")
+                with open("resource/sample_input.txt", "r") as patternSeclect:
+                    if (patternSeclect.read(1) == '#'):
+                        self.patternNum = 2
+                        print("change cub to circ is ok")
+                        self.figureSR = overlapDef.printCirc()
+                    else:
+                        self.patternNum = 2
+                        print("change circ to circ is ok")
+                        self.figureSR = overlapDef.printCirc()
         self.changeFigure()
 
-    def set_globalCirc(self):
+
+    def set_sigureCirc(self):
         if self.btnASCirc.isChecked():
             if self.btnASCub.isChecked() is not True:
-                glv.set("circ", "true")
-                glv.set("cub", "false")
+                with open("resource/sample_input.txt", "r") as patternSeclect:
+                    if (patternSeclect.read(1) == '#'):
+                        self.patternNum = 2
+                        print("change cub to circ is ok")
+                        self.figureSR = overlapDef.printCirc()
+                    else:
+                        self.patternNum = 2
+                        print("change circ to circ is ok")
+                        self.figureSR = overlapDef.printCirc()
         if self.btnASCub.isChecked():
             if self.btnASCirc.isChecked() is not True:
-                glv.set("circ", "false")
-                glv.set("cub", "true")
+                with open("resource/sample_input.txt", "r") as patternSeclect:
+                    if (patternSeclect.read(1) == '#'):
+                        self.patternNum = 1
+                        print("change cub to cub is ok")
+                        self.figureSR = overlapDef.printCub()
+                    else:
+                        self.patternNum = 2
+                        print("change circ to cub is not ok")
+                        # alert = QMessageBox(QMessageBox.Warning, "Warning",
+                        #                     "This will violate the code, selection failed")
+                        # alert.exec_()
         self.changeFigure()
 
-    # def writeBtnFB(self, str):
-    #     global ans1Text
-    #     ans1Text = str
-    #
-    # def click_submit(self):
-    #     with open("feedback.txt", "w") as self.f:
-    #         if ans1Text is not None:
-    #             self.f.write(ans1Text)
-    #         self.f.write("\n")  # 换行
-    #         self.f.write(self.ansFBRadio3.toPlainText())
-    #         self.f.write("\n")
-    #         self.f.write(self.ansFB2.toPlainText())
-    #         self.f.close()
 
     def method_handle_sign(self):
-        if glv.get("cub") == "true":
-            if glv.get("circ") == "false":
-                print("get cub")
+        self.stackedWidget.setCurrentIndex(0)
+        self.btnSR.setChecked(True)
+        with open("resource/sample_input.txt", "r") as patternSeclect:
+            if (patternSeclect.read(1) == '#'):
+                self.patternNum = 1
                 self.btnASCub.setChecked(True)
                 self.btnASCirc.setChecked(False)
-        if glv.get("circ") == "true":
-            if glv.get("cub") == "false":
-                print("get circ")
-                self.btnASCirc.setChecked(True)
+            else:
+                self.patternNum = 2
                 self.btnASCub.setChecked(False)
-        self.changeFigure()
+                self.btnASCirc.setChecked(True)
+        # self.changeFigure()
+        # 同类型没有刷新...
+        for i in range(self.layoutSR.count()):  # 用这个把layoutSR中的控件删干净
+            self.layoutSR.itemAt(i).widget().deleteLater()
+        self.figureSR = overlapDef.figurePrint()
+        self.canvasSR = FigureCanvas(self.figureSR)
+        self.layoutSR.addWidget(self.canvasSR, 4)
+        self.canvasSettings()
         self.show()
 
     def changeFigure(self):
         print("change Figure")
         for i in range(self.layoutSR.count()):  # 用这个把layoutSR中的控件删干净
             self.layoutSR.itemAt(i).widget().deleteLater()
-        # self.layoutSR.setAlignment(Qt.AlignCenter)  # 直接挂了...
-        # if glv.get("cub") == "true":
-        #     if glv.get("circ") == "false":
-        #         print("set cub")
-        #         self.figureSR = overlapDef.figureCub()
-        #         self.canvasSR = FigureCanvas(self.figureSR)
-        #         self.layoutSR.addWidget(self.canvasSR, 4)
-        #         # self.layoutSR.setAlignment(Qt.AlignCenter)
-        # if glv.get("circ") == "true":
-        #     if glv.get("cub") == "false":
-        #         print("set circ")
-        self.figureSR = overlapDef.figureCirc()
         self.canvasSR = FigureCanvas(self.figureSR)
         self.layoutSR.addWidget(self.canvasSR, 4)
-                # self.layoutSR.setAlignment(Qt.AlignCenter)
         self.canvasSettings()
 
     def canvasSettings(self):
-        # self.layoutSR.setContentsMargins(100, 0, 100, 0)
         self.reSizeCanvas()
         self.toolBar = NavigationToolbar(self.canvasSR, self)
         self.toolBar.hide()
@@ -295,18 +307,6 @@ class resultPage(QWidget):
         self.canvasSR.mpl_connect("button_press_event", self.pan)
         self.canvasSR.mpl_connect("button_release_event", lambda event: self.onRelease(event, self.canvasSR))
 
-    # def zoomEvent(self, event, canvas):
-    #     axtemp = event.inaxes
-    #     x_min, x_max = axtemp.get_xlim()
-    #     y_min, y_max = axtemp.get_ylim()
-    #     fanwei = (x_max - x_min) / 10
-    #     if event.button == 'up':
-    #         axtemp.set(xlim=(x_min + fanwei, x_max - fanwei))
-    #         axtemp.set(ylim=(y_min + fanwei, y_max - fanwei))
-    #     elif event.button == 'down':
-    #         axtemp.set(xlim=(x_min - fanwei, x_max + fanwei))
-    #         axtemp.set(ylim=(y_min - fanwei, y_max + fanwei))
-    #     canvas.draw_idle()
     def zoomEvent(self, event):
         print("in zoom")
         self.qmutx.lock()
@@ -316,6 +316,7 @@ class resultPage(QWidget):
         x_min, x_max = axtemp.get_xlim()
         y_min, y_max = axtemp.get_ylim()
         fanwei = (x_max - x_min) / 10
+
         if event.button == 'up':
             print("up")
             plt.cla()
@@ -323,16 +324,11 @@ class resultPage(QWidget):
             axtemp.set(xlim=(x_min + fanwei, x_max - fanwei))
             axtemp.set(ylim=(y_min + fanwei, y_max - fanwei))
             zoomRatio = x_max / 6
-            with open("resource/sample_input.txt", "r") as patternSeclect:
-                if (patternSeclect.read(1) == '#'):
-                    patternNum = 1
-                else:
-                    patternNum = 2
             graphDemo = Graph()
-            graphDemo.readInput("resource/sample_input.txt", patternNum)  # 2 represents pattern 2, NEED aumatic checking!!!
-            windowRange = calOverlapLayout(graphDemo, patternNum)  # window range specifies the coordinate settings
+            graphDemo.readInput("resource/sample_input.txt", self.patternNum)  # 2 represents pattern 2, NEED aumatic checking!!!
+            windowRange = calOverlapLayout(graphDemo, self.patternNum)  # window range specifies the coordinate settings
 
-            if patternNum == 1:
+            if self.patternNum == 1:
                 pattern1Draw(graphDemo, axtemp, zoomRatio)
             else:
                 pattern2Draw(graphDemo, axtemp, zoomRatio)
@@ -355,17 +351,11 @@ class resultPage(QWidget):
             axtemp.set(ylim=(y_min - fanwei, y_max + fanwei))
             zoomRatio = x_max / 6
 
-            with open("resource/sample_input.txt", "r") as patternSeclect:
-                if (patternSeclect.read(1) == '#'):
-                    patternNum = 1
-                else:
-                    patternNum = 2
-
             graphDemo = Graph()
-            graphDemo.readInput("resource/sample_input.txt", patternNum)  # 2 represents pattern 2, NEED aumatic checking!!!
-            windowRange = calOverlapLayout(graphDemo, patternNum)  # window range specifies the coordinate settings
+            graphDemo.readInput("resource/sample_input.txt", self.patternNum)  # 2 represents pattern 2, NEED aumatic checking!!!
+            windowRange = calOverlapLayout(graphDemo, self.patternNum)  # window range specifies the coordinate settings
 
-            if patternNum == 1:
+            if self.patternNum == 1:
                 pattern1Draw(graphDemo, axtemp, zoomRatio)
             else:
                 pattern2Draw(graphDemo, axtemp, zoomRatio)
