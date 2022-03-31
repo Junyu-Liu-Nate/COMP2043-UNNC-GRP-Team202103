@@ -2,90 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b2ecd04a-9c1f-436a-83d6-5818552a7215" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Test/combine1.0/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/combine1.0/.idea/GUI.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/combine1.0/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/combine1.0/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/combine1.0/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/combine1.0/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/combine1.0/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/combine1.0/EnterPage.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/combine1.0/GUImain.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/combine1.0/Questionnaires/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/combine1.0/Questionnaires/.idea/Questionnaires.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/combine1.0/Questionnaires/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/combine1.0/Questionnaires/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/combine1.0/Questionnaires/localStore.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/combine1.0/Questionnaires/q1_1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/combine1.0/Questionnaires/q1_2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/combine1.0/Questionnaires/q2_2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/combine1.0/Questionnaires/q2_3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/combine1.0/Questionnaires/q2_4.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/combine1.0/Questionnaires/q2_5.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/combine1.0/Questionnaires/q3_1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/combine1.0/Questionnaires/questionnaire1.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/combine1.0/Questionnaires/test.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/combine1.0/Questionnaires/test2.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/combine1.0/Questionnaires/test3.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/combine1.0/ResultPage.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/combine1.0/canvas-nest.js/.babelrc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/combine1.0/canvas-nest.js/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/combine1.0/canvas-nest.js/LICENSE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/combine1.0/canvas-nest.js/README-zh.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/combine1.0/canvas-nest.js/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/combine1.0/canvas-nest.js/dist/canvas-nest.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/combine1.0/canvas-nest.js/dist/canvas-nest.umd.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/combine1.0/canvas-nest.js/index.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/combine1.0/canvas-nest.js/index150.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/combine1.0/canvas-nest.js/index200.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/combine1.0/canvas-nest.js/index25.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/combine1.0/canvas-nest.js/index50.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/combine1.0/canvas-nest.js/lib/CanvasNest.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/combine1.0/canvas-nest.js/lib/iife.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/combine1.0/canvas-nest.js/lib/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/combine1.0/canvas-nest.js/lib/utils.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/combine1.0/canvas-nest.js/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/combine1.0/canvas-nest.js/rollup.config.iife.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/combine1.0/canvas-nest.js/rollup.config.umd.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/combine1.0/canvas-nest.js/screenshot.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/combine1.0/canvas-nest.js/src/CanvasNest.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/combine1.0/canvas-nest.js/src/iife.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/combine1.0/canvas-nest.js/src/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/combine1.0/canvas-nest.js/src/utils.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/combine1.0/canvasSetting.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/combine1.0/feedback.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/combine1.0/globalVariable.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/combine1.0/overlap.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/combine1.0/overlap/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/combine1.0/overlap/graph.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/combine1.0/overlap/layoutAlgorithmOriginal.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/combine1.0/overlap/layoutAlgorithmOverlap.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/combine1.0/overlap/node.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/combine1.0/overlap/overlapDraw.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/combine1.0/overlap/overlapGroup.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/combine1.0/overlap/overlapNode.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/combine1.0/overlap/overlapNode2.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/combine1.0/overlap/overlapPatten.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/combine1.0/overlapDef.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/combine1.0/randomGenerator/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/combine1.0/randomGenerator/generateInput.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/combine1.0/randomGenerator/main.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/combine1.0/random_input.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/combine1.0/resource/alter.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/combine1.0/resource/circles.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/combine1.0/resource/cubes.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/combine1.0/resource/diff.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/combine1.0/resource/download.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/combine1.0/resource/feedback.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/combine1.0/resource/home.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/combine1.0/resource/icon.ico" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/combine1.0/resource/icon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/combine1.0/resource/random_input.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/combine1.0/resource/result.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/combine1.0/resource/sample.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/combine1.0/resource/sample_input.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/combine1.0/resource/styleSettings.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/combine1.0/widgetsCreator.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -117,6 +34,35 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
   </component>
+  <component name="RunManager">
+    <configuration name="GUImain" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="GRPTeam202103" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Test/combine1.0" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Test/combine1.0/GUImain.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.GUImain" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -126,10 +72,14 @@
       <option name="presentableId" value="Default" />
       <updated>1648644494440</updated>
       <workItem from="1648644497531" duration="41000" />
+      <workItem from="1648702531566" duration="29000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/GRPTeam202103$GUImain.coverage" NAME="GUImain Coverage Results" MODIFIED="1648702539908" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Test/combine1.0" />
   </component>
 </project>
