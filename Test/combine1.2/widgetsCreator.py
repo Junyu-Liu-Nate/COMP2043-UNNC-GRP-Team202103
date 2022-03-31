@@ -1,0 +1,78 @@
+# 创建QPushButton的global函数
+import PyQt5.Qt
+from PyQt5.QtCore import Qt, QUrl, QFileInfo
+from PyQt5.QtGui import QPixmap, QIcon
+from PyQt5.QtWebEngineWidgets import QWebEngineView
+from PyQt5.QtWidgets import QPushButton, QSizePolicy, QPlainTextEdit, QRadioButton, QLabel, QToolButton
+
+# 创建QPushButton并规定大小与格式
+def createBtn(str):
+    button = QPushButton(str)
+    button.setMaximumSize(900, 150)
+    button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)  # setSizePolicy(水平策略, 竖直策略)
+    return button
+
+# 创建QRadioButton
+def createRadioBtn(str):
+    # img = overlapPattern.plt.gcf()  # get current figure
+    # canvas = FigureCanvasQtAgg(img)
+    # layout.addWidget(canvas)
+    button = QRadioButton(str)
+    button.setMaximumSize(900, 130)  # 这个后面看情况要调整
+    button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    return button
+
+# 创建QToolButton, 记得加图片地址
+def createToolBtn(str, imgPath):
+    button = QToolButton()
+    button.setText(str)
+    button.setMaximumSize(900, 130)  # 看情况调整
+    button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    # 文字在图标下
+    pixM = QPixmap()
+    pixM.load(imgPath)
+    icon = QIcon(pixM)
+    button.setIcon(icon)
+    button.setToolButtonStyle(Qt.ToolButtonTextUnderIcon)
+    # 选中状态
+    button.setCheckable(True)
+    return button
+
+# 创建QPlainTextEdit
+def createText(str):
+    textEdit = QPlainTextEdit(str)
+    textEdit.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    return textEdit
+
+# 创建QWidget: label承载QPixmap
+def createLabPix(str):
+    label = QLabel()
+    img = QPixmap(str)
+    label.setPixmap(img)
+    label.setAlignment(Qt.AlignCenter)
+    # label.setScaledContents(True)
+    img.scaled(600, 600, Qt.KeepAspectRatio)
+    # label.setScaledContents(True)
+    # label.setFixedSize(600, 600)
+    # label.setMinimumSize(700, 700)
+    return label
+
+def createHTML150():
+    browser = QWebEngineView()
+    browser.load(QUrl(QFileInfo("canvas-nest.js/index150.html").absoluteFilePath()))
+    return browser
+
+def createHTML200():
+    browser = QWebEngineView()
+    browser.load(QUrl(QFileInfo("canvas-nest.js/index200.html").absoluteFilePath()))
+    return browser
+
+def createHTML25():
+    browser = QWebEngineView()
+    browser.load(QUrl(QFileInfo("canvas-nest.js/index25.html").absoluteFilePath()))
+    return browser
+
+def createHTML50():
+    browser = QWebEngineView()
+    browser.load(QUrl(QFileInfo("canvas-nest.js/index50.html").absoluteFilePath()))
+    return browser

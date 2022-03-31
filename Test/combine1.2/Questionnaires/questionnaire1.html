@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body
+        {
+            zoom: 1.5;
+        }
+        /*选项居中*/
+        input[type=radio], input[type=radio]+img{
+            vertical-align: middle;
+        }
+    </style>
+    <title>local storage test</title>
+</head>
+<body>
+<!--<form name="thisForm" method="post" action="" target="myIframe" onSubmit="return submits()">-->
+<form name="thisForm" method="post" action="illustration.html" onSubmit="return submits()">
+    <ol>
+        <li>Do you think it's overall more convenient to read from changing the simple connection graph to the edge compression graph? (Yes/No)</li>
+        <label><input class="radio_type" type="radio" name="1" id="q1_A" value="A" required>A<img src="q1_1.jpg"></label>
+        <label><input class="radio_type" type="radio" name="1" id="q1_B" value="B" required>B<img src="q1_2.jpg"> </label>
+    </ol>
+    <label>Your Advice: <input type="text" id="2" required></label>
+    <button type="submit">Submit the Questionnaire</button>
+    <button type="button" onclick="clear()">Clear Local Storage</button>
+    <button type="button" onclick="showRe()">Show Total Result</button>
+</form>
+<script type="text/javascript">
+    var ls= window.localStorage;
+
+    function showRe()
+    {
+        var key, value, i;
+        alert(ls.length);
+        for(i=0; i<ls.length; i++)
+        {
+            key = ls.key(i);
+            value = ls.getItem(key);
+            document.write(key+"->"+value+"<br>");
+        }
+    }
+
+    //在local storage中加入值
+    function setPairs(key, value)
+    {
+        //ls内有没有这个键, 如果没有证明是第一次, 那么先新建这个键
+        if(ls.getItem(key) == null)
+        {
+            ls.setItem(key, value);
+        }
+        else
+        {
+            var orig = ls.getItem(key);
+            ls.setItem(key, orig+value);    //拼接答案
+        }
+    }
+
+    //输入name, 获得这个name的value
+    //即检查这个name的选项, 哪一个radio是被选中的
+    function getValue(name)
+    {
+        alert("getValue");
+        var radio, value, i;
+        radio = document.getElementsByName(name);
+        for(i=0; i<radio.length; i++)
+        {
+            if(radio[i].checked)
+            {
+                value = radio[i].value;
+                alert(value);
+                //存储到local storage
+                setPairs(name, value);
+            }
+        }
+    }
+
+    function getText(id)
+    {
+        alert("getText");
+        var textIn, orig;
+        textIn = document.getElementById(id).value;
+        if(ls.getItem(id)==null)
+        {
+            ls.setItem(id, "text advice:<br>"+textIn);
+        }
+        else
+        {
+            orig = ls.getItem(id);
+            ls.setItem(id, orig+"<br>"+textIn);
+        }
+    }
+
+    function submits()
+    {
+        //按顺序拼接全部的答案[A, B, A, A, ...]
+        var i, numberOfR, numberOfT;
+        numberOfR = 1;
+        numberOfT = 2;
+        for(i=1; i<=numberOfR; i++)
+        {
+            getValue(i.toString());
+        }
+        for(i=2; i<=numberOfT; i++)
+        {
+            getText(i.toString());
+        }
+        /*
+        var form, element, i;
+        form = document.thisForm;
+        document.write("thisForm "+form.length+" elements"+"<br>");
+        alert(i.toString());
+        for(i=0; i<form.length; i++)
+        {
+            element = form[i];
+            if(i>0)
+                document.write(", ");
+            document.write(element.id);
+        }
+        */
+        //跳转到另一个html展示ls的结果，柱状图
+        // for(var i=0; i<ls.length; i++)
+        // {
+        //     var key = ls.key(i);
+        //     var val = ls.getItem(key);
+        //     document.write(key + " -> " + val + "<br>");
+        // }
+    }
+
+    //清空local storage
+    function clear()
+    {
+        ls.clear(); //清空表单
+    }
+
+
+</script>
+</body>
+</html>
