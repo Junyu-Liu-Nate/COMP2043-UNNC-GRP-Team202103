@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Questionnaire 1</title>
+</head>
+<body>
+<form method="post" action="URL" onSubmit="return download()">
+    <li>
+        <label><input type="radio" name="1" required>answer 1</label>
+        <label><input type="radio" name="1" required>answer 2</label>
+        <label><input type="radio" name="1" required>answer 3</label>
+        <label><input type="radio" name="1" required>answer 4</label>
+    </li>
+    <button type="submit">Submit Questionnaire</button>
+</form>
+<script type="text/javascript">
+    function download() {
+        var formObj = new FormData();
+        var name = "my name";
+        formObj.append("name", name);
+
+        //1.声明异步请求对象：
+        var xmlHttp = null;
+        if (window.ActiveXObject) {
+            // IE6, IE5 浏览器执行代码
+            xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+            // alert("ActiveXObject");
+        } else if (window.XMLHttpRequest) {
+            // IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+            xmlHttp = new XMLHttpRequest();
+            // alert("XMLHttpRequest");
+        }
+        if (xmlHttp != null)
+        {
+            xmlHttp.open("GET", "/localStorage.txt", true);
+            xmlHttp.send(null);
+
+            xmlHttp.onreadystatechange = doResult;
+
+            function doResult()
+            {
+                alert("hh")
+                if(xmlHttp.readyState === 4)
+                {
+                    if(xmlHttp.status === 200)
+                    {
+                        // document.getElementsByName("1")[0].innerHTML = xmlHttp.responseText;
+
+                    }
+                }
+            }
+
+        }
+    }
+</script>
+</body>
+</html>

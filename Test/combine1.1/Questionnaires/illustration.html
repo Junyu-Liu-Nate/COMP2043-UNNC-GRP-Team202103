@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Bar Chart</title>
+</head>
+<body>
+<!-- 图表容器 DOM -->
+<div id="container" style="width: 600px;height:400px;"></div>
+<!-- 引入 highcharts.js -->
+<script src="http://cdn.highcharts.com.cn/highcharts/highcharts.js"></script>
+<script>
+    // 图表配置
+    var ls = window.localStorage;
+    var str1 = ls.getItem("1");
+    var Q1A, Q1B;
+    Q1A=Q1B=0;
+    for(var i=0; i<str1.length; i++)
+    {
+        if(str1[i]==='A')
+        {
+            Q1A = Q1A+1;
+            continue;
+        }
+        Q1B = Q1B+1;
+    }
+    var options = {
+        chart: {
+            type: 'bar'                          //指定图表的类型，默认是折线图（line）
+        },
+        title: {
+            text: 'Overlap Feedback'                 // 标题
+        },
+        xAxis: {
+            // categories: ['苹果', '香蕉', '橙子']   // x 轴分类
+            categories: ['Q1', 'Q2', 'Q3']
+        },
+        yAxis: {
+            title: {
+                text: 'Sum of Options'                // y 轴标题
+            }
+        },
+        series: [{                              // 数据列
+            name: 'A',                        // 数据列名
+            data: [Q1A]                     // 数据
+            // data: []
+        }, {
+            name: 'B',
+            data: [Q1B]
+        }]
+    };
+    // 图表初始化函数
+    var chart = Highcharts.chart('container', options);
+</script>
+</body>
+</html>
