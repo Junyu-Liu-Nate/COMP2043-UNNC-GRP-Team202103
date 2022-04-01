@@ -8,7 +8,7 @@ from overlap.overlapPatten import pattern1Draw, pattern2Draw
 
 # return figure to canvas
 def figurePrint():
-    with open("resource/sample_input.txt", "r") as patternSeclect:
+    with open("resource/sample_input.txt", "r", encoding='utf-8') as patternSeclect:
         if (patternSeclect.read(1) == '#'):
             patternNum = 1
         else:
@@ -36,6 +36,7 @@ def figurePrint():
 
     return plt.gcf()
 
+
 def printCub():
     patternNum = 1
     graphDemo = Graph()
@@ -60,6 +61,7 @@ def printCub():
     ax1.set_ylim(windowRange[0], windowRange[1])
 
     return plt.gcf()
+
 
 def printCirc():
     patternNum = 2
@@ -87,5 +89,7 @@ def printCirc():
     return plt.gcf()
 
 # close the plt
+
+
 def figureDel(plt):
     plt.close()  # from matplotlib.pyplot import close

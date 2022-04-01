@@ -121,7 +121,7 @@ def pattern2Draw(graph, axis, zoomRatio):
 
 # ----- Read input file and calculate layout -----#
 # patternNum = input("Please enter the pattern number: ")
-with open("resource/sample_input.txt", "r") as patternSeclect:
+with open("resource/sample_input.txt", "r", encoding='utf-8') as patternSeclect:
     if(patternSeclect.read(1) == '#'):
         patternNum = 1
     else:

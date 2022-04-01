@@ -1,7 +1,8 @@
 import PyQt5
 import PyQt5.Qt
 from PyQt5 import Qt, QtGui, QtCore
-from PyQt5.QtCore import pyqtSignal, QUrl, QFileInfo, QMutex  # PyQt5.QtCore.Qt.AlignCenter
+# PyQt5.QtCore.Qt.AlignCenter
+from PyQt5.QtCore import pyqtSignal, QUrl, QFileInfo, QMutex
 from PyQt5.QtGui import QPixmap, QIcon, QImage
 from PyQt5.QtWebEngineWidgets import QWebEngineView
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QStackedWidget, QLabel, QFileDialog, QSplitter, \
@@ -131,10 +132,10 @@ class resultPage(QWidget):
         self.layoutFB = QVBoxLayout()
         pageFB.setLayout(self.layoutFB)
         self.webFB = QWebEngineView(self)
-        self.webFB.load(QUrl(QFileInfo("Questionnaires/questionnaire1.html").absoluteFilePath()))
+        self.webFB.load(
+            QUrl(QFileInfo("Questionnaires/questionnaire1.html").absoluteFilePath()))
         self.layoutFB.addWidget(self.webFB, 1)
         # webFB.load(QUrl(r"https://forms.office.com/r/BQXHH6FS1Z"))
-
 
         # 随机问卷要不要?
         # quesFB1 = QLabel("I'm question 1")
@@ -157,7 +158,6 @@ class resultPage(QWidget):
         # layoutFB.addWidget(btnFBover, 1)
 
         # 套娃完成随机显示, stacked
-
 
         """Export"""
         # 这只是一个按钮, 点击之后可以将图片保存到本地
@@ -186,6 +186,7 @@ class resultPage(QWidget):
         self.reSizeCanvas()
 
     """Methods for Change StackedPages"""
+
     def click_goSR(self):
         self.stackedWidget.setCurrentIndex(0)
 
@@ -199,13 +200,15 @@ class resultPage(QWidget):
         for i in range(self.layoutFB.count()):  # 用这个把layoutSR中的控件删干净
             self.layoutFB.itemAt(i).widget().deleteLater()
         self.webFB = QWebEngineView(self)
-        self.webFB.load(QUrl(QFileInfo("Questionnaires/questionnaire1.html").absoluteFilePath()))
+        self.webFB.load(
+            QUrl(QFileInfo("Questionnaires/questionnaire1.html").absoluteFilePath()))
         self.layoutFB.addWidget(self.webFB, 1)
         self.stackedWidget.setCurrentIndex(3)
 
     def click_goEX(self):
         # 保存到本地
-        fd, fp = QFileDialog.getSaveFileName(self.stackedWidget, "save file", "", "*.png;;All Files(*)")
+        fd, fp = QFileDialog.getSaveFileName(
+            self.stackedWidget, "save file", "", "*.png;;All Files(*)")
         plt.savefig("overlap.png")
         image = QImage("overlap.png")
         image.save(fd)
@@ -217,7 +220,7 @@ class resultPage(QWidget):
     def set_figureCub(self):
         if self.btnASCub.isChecked():
             if self.btnASCirc.isChecked() is not True:
-                with open("resource/sample_input.txt", "r") as patternSeclect:
+                with open("resource/sample_input.txt", "r", encoding='utf-8') as patternSeclect:
                     if (patternSeclect.read(1) == '#'):
                         self.patternNum = 1
                         print("change cub to cub is ok")
@@ -225,7 +228,8 @@ class resultPage(QWidget):
                     else:
                         self.patternNum = 2
                         print("change circ to cub is not ok")
-                        alert = QMessageBox(QMessageBox.Warning, "Warning", "This will violate the code, selection failed")
+                        alert = QMessageBox(
+                            QMessageBox.Warning, "Warning", "This will violate the code, selection failed")
                         alert.exec_()
         if self.btnASCirc.isChecked():
             if self.btnASCub.isChecked() is not True:
@@ -239,7 +243,6 @@ class resultPage(QWidget):
                         print("change circ to circ is ok")
                         self.figureSR = overlapDef.printCirc()
         self.changeFigure()
-
 
     def set_sigureCirc(self):
         if self.btnASCirc.isChecked():
@@ -268,11 +271,10 @@ class resultPage(QWidget):
                         # alert.exec_()
         self.changeFigure()
 
-
     def method_handle_sign(self):
         self.stackedWidget.setCurrentIndex(0)
         self.btnSR.setChecked(True)
-        with open("resource/sample_input.txt", "r") as patternSeclect:
+        with open("resource/sample_input.txt", "r", encoding='utf-8') as patternSeclect:
             if (patternSeclect.read(1) == '#'):
                 self.patternNum = 1
                 self.btnASCub.setChecked(True)
@@ -305,12 +307,14 @@ class resultPage(QWidget):
         self.toolBar.hide()
         self.canvasSR.mpl_connect('scroll_event', self.zoomEvent)
         self.canvasSR.mpl_connect("button_press_event", self.pan)
-        self.canvasSR.mpl_connect("button_release_event", lambda event: self.onRelease(event, self.canvasSR))
+        self.canvasSR.mpl_connect(
+            "button_release_event", lambda event: self.onRelease(event, self.canvasSR))
 
     def zoomEvent(self, event):
         print("in zoom")
         self.qmutx.lock()
-        self.canvasSR.mpl_disconnect(self.canvasSR.mpl_connect("button_press_event", self.pan))
+        self.canvasSR.mpl_disconnect(
+            self.canvasSR.mpl_connect("button_press_event", self.pan))
 
         axtemp = event.inaxes
         x_min, x_max = axtemp.get_xlim()
@@ -325,8 +329,10 @@ class resultPage(QWidget):
             axtemp.set(ylim=(y_min + fanwei, y_max - fanwei))
             zoomRatio = x_max / 6
             graphDemo = Graph()
-            graphDemo.readInput("resource/sample_input.txt", self.patternNum)  # 2 represents pattern 2, NEED aumatic checking!!!
-            windowRange = calOverlapLayout(graphDemo, self.patternNum)  # window range specifies the coordinate settings
+            # 2 represents pattern 2, NEED aumatic checking!!!
+            graphDemo.readInput("resource/sample_input.txt", self.patternNum)
+            # window range specifies the coordinate settings
+            windowRange = calOverlapLayout(graphDemo, self.patternNum)
 
             if self.patternNum == 1:
                 pattern1Draw(graphDemo, axtemp, zoomRatio)
@@ -352,8 +358,10 @@ class resultPage(QWidget):
             zoomRatio = x_max / 6
 
             graphDemo = Graph()
-            graphDemo.readInput("resource/sample_input.txt", self.patternNum)  # 2 represents pattern 2, NEED aumatic checking!!!
-            windowRange = calOverlapLayout(graphDemo, self.patternNum)  # window range specifies the coordinate settings
+            # 2 represents pattern 2, NEED aumatic checking!!!
+            graphDemo.readInput("resource/sample_input.txt", self.patternNum)
+            # window range specifies the coordinate settings
+            windowRange = calOverlapLayout(graphDemo, self.patternNum)
 
             if self.patternNum == 1:
                 pattern1Draw(graphDemo, axtemp, zoomRatio)
@@ -385,7 +393,8 @@ class resultPage(QWidget):
 
     def onRelease(self, event, canvas):
         print("release")
-        self.canvasSR.mpl_disconnect(self.canvasSR.mpl_connect("button_press_event", self.pan))
+        self.canvasSR.mpl_disconnect(
+            self.canvasSR.mpl_connect("button_press_event", self.pan))
         # self.canvasSR.mpl_disconnect(self.idBtnPress)
         # del(self._pan_start)
         if hasattr(self, '_pan_start'):
@@ -395,6 +404,8 @@ class resultPage(QWidget):
         height = self.stackedWidget.height()
         width = self.stackedWidget.width()
         if width > height:
-            self.layoutSR.setContentsMargins((width - height) / 2, 0, (width - height) / 2, 0)
+            self.layoutSR.setContentsMargins(
+                (width - height) / 2, 0, (width - height) / 2, 0)
         else:
-            self.layoutSR.setContentsMargins(0, (height - width) / 2, 0, (height - width) / 2)
+            self.layoutSR.setContentsMargins(
+                0, (height - width) / 2, 0, (height - width) / 2)

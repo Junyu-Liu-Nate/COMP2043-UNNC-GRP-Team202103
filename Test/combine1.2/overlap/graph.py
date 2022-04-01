@@ -13,7 +13,7 @@ class Graph:
         self.__edgeList = []
 
     def readInput(self, fileName, patternNum):
-        with open(fileName, "r") as fileHandler:
+        with open(fileName, "r", encoding='utf-8') as fileHandler:
             # Read nodes
             next(fileHandler)
             tempTxt = fileHandler.readline()
