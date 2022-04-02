@@ -2,5 +2,5 @@
 ## Official Meeting:
 - Implement overlapping in the middle of a node.
 - Overlapping nodes should have attractive or repulsive force.
-- Some words in the user survey should be more accurate and specific and alter the pictures in the surcey.
+- Some words in the user survey should be more accurate and specific and alter the pictures in the survey.
 - Start to write final report.
