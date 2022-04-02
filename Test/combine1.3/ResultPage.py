@@ -30,6 +30,7 @@ class resultPage(QWidget):
 
     def __init__(self):
         super(resultPage, self).__init__()
+        self.patternNum = None
         self.resize(1600, 1200)
         self.setWindowTitle("OVERLAP")
 
@@ -179,7 +180,7 @@ class resultPage(QWidget):
         pageFB.setLayout(self.layoutFB)
         self.webFB = QWebEngineView(self)
         self.webFB.load(
-            QUrl(QFileInfo("Questionnaires/questionnaire1.html").absoluteFilePath()))
+            QUrl(QFileInfo("questionnaire/questionnaire1.html").absoluteFilePath()))
         self.layoutFB.addWidget(self.webFB, 1)
         # webFB.load(QUrl(r"https://forms.office.com/r/BQXHH6FS1Z"))
 
@@ -200,8 +201,8 @@ class resultPage(QWidget):
         # btnFBover.clicked.connect(self.click_submit)
 
         """radioButton Checked Effects"""
-        self.btnASCub.toggled.connect(self.set_figureCub)
-        self.btnASCirc.toggled.connect(self.set_sigureCirc)
+        self.btnASCub.toggled.connect(self.set_style)
+        self.btnASCirc.toggled.connect(self.set_style)
 
         #self.ansFBRadio1.toggled.connect(lambda: self.writeBtnFB(self.ansFBRadio1.text()))
         #self.ansFBRadio2.toggled.connect(lambda: self.writeBtnFB(self.ansFBRadio2.text()))
@@ -226,7 +227,7 @@ class resultPage(QWidget):
             self.layoutFB.itemAt(i).widget().deleteLater()
         self.webFB = QWebEngineView(self)
         self.webFB.load(
-            QUrl(QFileInfo("Questionnaires/questionnaire1.html").absoluteFilePath()))
+            QUrl(QFileInfo("questionnaire/questionnaire1.html").absoluteFilePath()))
         self.layoutFB.addWidget(self.webFB, 1)
         self.stackedWidget.setCurrentIndex(3)
 
@@ -242,125 +243,80 @@ class resultPage(QWidget):
         self.sign_toEnter.emit()  # 发射信号, 返回Enter Page, 别打错字了
         self.hide()
 
-    def set_figureCub(self):
-        if self.btnASCub.isChecked():
-            if self.btnASCirc.isChecked() is not True:
-                with open("resource/sample_input.txt", "r", encoding='utf-8') as patternSeclect:
-                    if (patternSeclect.read(1) == '#'):
-                        self.patternNum = 1
-                        print("change cub to cub is ok")
-                        self.figureSR = overlapDef.printCub()
-                    else:
-                        self.patternNum = 2
-                        print("change circ to cub is not ok")
-                        alert = QMessageBox(
-                            QMessageBox.Warning, "Warning", "This will violate the code, selection failed")
-                        alert.exec_()
-        if self.btnASCirc.isChecked():
-            if self.btnASCub.isChecked() is not True:
-                with open("resource/sample_input.txt", "r") as patternSeclect:
-                    if (patternSeclect.read(1) == '#'):
-                        self.patternNum = 2
-                        print("change cub to circ is ok")
-                        self.figureSR = overlapDef.printCirc()
-                    else:
-                        self.patternNum = 2
-                        print("change circ to circ is ok")
-                        self.figureSR = overlapDef.printCirc()
-        self.changeFigure()
-
-    def set_sigureCirc(self):
-        if self.btnASCirc.isChecked():
-            if self.btnASCub.isChecked() is not True:
-                with open("resource/sample_input.txt", "r") as patternSeclect:
-                    if (patternSeclect.read(1) == '#'):
-                        self.patternNum = 2
-                        print("change cub to circ is ok")
-                        self.figureSR = overlapDef.printCirc()
-                    else:
-                        self.patternNum = 2
-                        print("change circ to circ is ok")
-                        self.figureSR = overlapDef.printCirc()
-        if self.btnASCub.isChecked():
-            if self.btnASCirc.isChecked() is not True:
-                with open("resource/sample_input.txt", "r") as patternSeclect:
-                    if (patternSeclect.read(1) == '#'):
-                        self.patternNum = 1
-                        print("change cub to cub is ok")
-                        self.figureSR = overlapDef.printCub()
-                    else:
-                        self.patternNum = 2
-                        print("change circ to cub is not ok")
-                        # alert = QMessageBox(QMessageBox.Warning, "Warning",
-                        #                     "This will violate the code, selection failed")
-                        # alert.exec_()
-        self.changeFigure()
-
     def method_handle_sign(self):
+        print("handle")
         self.stackedWidget.setCurrentIndex(0)
         self.btnSR.setChecked(True)
-        with open("resource/sample_input.txt", "r", encoding='utf-8') as patternSeclect:
-            if (patternSeclect.read(1) == '#'):
+        # sample_input被传进来的时候就进行一次判断
+        with open("resource/sample_input.txt", "r", encoding="utf-8") as patternSelect:
+            if(patternSelect.read(1) == "#"):
+                # self.patternNum is current overlap style choice
                 self.patternNum = 1
-                #self.calculateLayout(1)
+                # self.patternChoice, for #, only cub choice
+                self.inputChoice = 2
+                # 这两个干脆只要一个函数好了, 判断哪个被checked
                 self.btnASCub.setChecked(True)
                 self.btnASCirc.setChecked(False)
             else:
                 self.patternNum = 2
-                #self.calculateLayout(2)
+                self.inputChoice = 1
                 self.btnASCub.setChecked(False)
                 self.btnASCirc.setChecked(True)
-        # self.changeFigure()
-        # 同类型没有刷新...
-        for i in range(self.layoutSR.count()):  # 用这个把layoutSR中的控件删干净
-            self.layoutSR.itemAt(i).widget().deleteLater()
-        self.figureSR = overlapDef.figurePrint()
-        self.canvasSR = FigureCanvas(self.figureSR)
-        self.layoutSR.addWidget(self.canvasSR, 4)
-        self.canvasSettings()
-        self.show()
+            self.show()
 
-    def changeFigure(self):
-        print("change Figure")
-        # for i in range(self.layoutSD.count()):  # 用这个把layoutSR中的控件删干净
-        #     self.layoutSD.itemAt(i).widget().deleteLater()
-        # # self.layoutSD = QHBoxLayout()
-        # self.layoutSDBef = QVBoxLayout()
-        # self.layoutSDAf = QVBoxLayout()
-        # self.layoutSD.addLayout(self.layoutSDBef, 1)
-        # self.layoutSD.addLayout(self.layoutSDAf, 1)
-        #
-        # self.layoutSDBef.addWidget(createLabPix("resource/beforeFig.png"), 4)
-        # self.layoutSDBef.addWidget(QLabel("Before"), 1)
-        # self.layoutSDAf.addWidget(createLabPix("resource/afterFig.png"), 4)
-        # self.layoutSDAf.addWidget(QLabel("After"), 1)
+    def set_style(self):
+        print("set Style")
+        # 选择Cub按钮, 想要改变为Cub
+        if self.btnASCub.isChecked():
+            if self.btnASCirc.isChecked() is not True:
+                # 如果是有两种选择的input
+                if self.inputChoice == 2:
+                    self.patternNum = 1
+                    self.figureSR = overlapDef.figurePrint(1)
+                elif self.inputChoice == 1:
+                    # 不允许改变
+                    alert = QMessageBox(
+                        QMessageBox.Warning, "Warning", "This will violate the code, selection failed")
+                    alert.exec_()
+        # 选择Circ按钮, 想要改变为Circ
+        if self.btnASCub.isChecked() is not True:
+            if self.btnASCirc.isChecked():
+                # 所有都可以改变为Cub
+                self.patternNum = 2
+                self.figureSR = overlapDef.figurePrint(2)
+        # 更新画布
+        self.refreshCanvas()
+
+    def refreshCanvas(self):
+        print("refresh Canvas")
+        # 设置Show DIFF
         self.pixAfter = createLabPix("resource/afterFig.png")
         for j in range(self.layoutSDAf.count()):  # 用这个把layoutSR中的控件删干净
             self.layoutSDAf.itemAt(j).widget().deleteLater()
         self.layoutSDAf.addWidget(self.pixAfter, 4)
         self.layoutSDAf.addWidget(QLabel("After"), 1)
 
+        # 设置Show Result
         for i in range(self.layoutSR.count()):  # 用这个把layoutSR中的控件删干净
             self.layoutSR.itemAt(i).widget().deleteLater()
+        self.figureSR = plt.gcf()
         self.canvasSR = FigureCanvas(self.figureSR)
         self.layoutSR.addWidget(self.canvasSR, 4)
+        print("after refresh, before set Canvas")
         self.canvasSettings()
 
-
-
-
     def canvasSettings(self):
+        print("set Canvas")
         self.reSizeCanvas()
         self.toolBar = NavigationToolbar(self.canvasSR, self)
         self.toolBar.hide()
         self.canvasSR.mpl_connect('scroll_event', self.zoomEvent)
         self.canvasSR.mpl_connect("button_press_event", self.pan)
-        self.canvasSR.mpl_connect(
-            "button_release_event", lambda event: self.onRelease(event, self.canvasSR))
+        self.canvasSR.mpl_connect("button_release_event", self.onRelease)
+        print("finish canvasSetting")
 
     def zoomEvent(self, event):
-        print("in zoom")
-        self.qmutx.lock()
+        print("zoom event")
         self.canvasSR.mpl_disconnect(
             self.canvasSR.mpl_connect("button_press_event", self.pan))
 
@@ -369,6 +325,7 @@ class resultPage(QWidget):
         y_min, y_max = axtemp.get_ylim()
         fanwei = (x_max - x_min) / 10
 
+        print("hi")
         if event.button == 'up':
             print("up")
             plt.cla()
@@ -377,7 +334,7 @@ class resultPage(QWidget):
             axtemp.set(ylim=(y_min + fanwei, y_max - fanwei))
             zoomRatio = x_max / 6
             graphDemo = Graph()
-            # 2 represents pattern 2, NEED aumatic checking!!!
+            # 2 represents pattern 2, NEED automatic checking!!!
             graphDemo.readInput("resource/sample_input.txt", self.patternNum)
             # window range specifies the coordinate settings
             windowRange = calOverlapLayout(graphDemo, self.patternNum)
@@ -386,17 +343,8 @@ class resultPage(QWidget):
                 pattern1Draw(graphDemo, axtemp, zoomRatio)
             else:
                 pattern2Draw(graphDemo, axtemp, zoomRatio)
-
             plt.grid(False)
-            # ax1.set_xlim(-6,6)
-            # ax1.set_ylim(-6,6)
-
-            for i in range(self.layoutSR.count()):  # 用这个把layoutSR中的控件删干净
-                self.layoutSR.itemAt(i).widget().deleteLater()
-
-            self.figureSR = plt.gcf()
-            self.canvasSR = FigureCanvas(self.figureSR)
-            self.layoutSR.addWidget(self.canvasSR, 4)
+            self.refreshCanvas()
 
         elif event.button == 'down':
             print('down')
@@ -415,21 +363,12 @@ class resultPage(QWidget):
                 pattern1Draw(graphDemo, axtemp, zoomRatio)
             else:
                 pattern2Draw(graphDemo, axtemp, zoomRatio)
-
             plt.grid(False)
-
-            for i in range(self.layoutSR.count()):  # 用这个把layoutSR中的控件删干净
-                self.layoutSR.itemAt(i).widget().deleteLater()
-
-            self.figureSR = plt.gcf()
-            self.canvasSR = FigureCanvas(self.figureSR)
-            self.layoutSR.addWidget(self.canvasSR, 4)
+            self.refreshCanvas()
 
         self.canvasSR.mpl_connect("button_press_event", self.pan)
-        self.qmutx.unlock()
 
     def pan(self, event):
-        self.qmutx.lock()
         print("pan")
         if event.button == 1:
             self.toolBar = NavigationToolbar(self.canvasSR, self)
@@ -437,14 +376,10 @@ class resultPage(QWidget):
             self.toolBar.pan()
         else:
             pass
-        self.qmutx.unlock()
 
-    def onRelease(self, event, canvas):
+    def onRelease(self, event):
         print("release")
-        self.canvasSR.mpl_disconnect(
-            self.canvasSR.mpl_connect("button_press_event", self.pan))
-        # self.canvasSR.mpl_disconnect(self.idBtnPress)
-        # del(self._pan_start)
+        self.canvasSR.mpl_disconnect(self.canvasSR.mpl_connect("button_press_event", self.pan))
         if hasattr(self, '_pan_start'):
             del self._pan_start
 
