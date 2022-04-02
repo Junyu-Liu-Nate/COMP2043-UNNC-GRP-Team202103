@@ -5,7 +5,8 @@
 - Discrible the process of the presentation.
 - Show difference should be finished.
 - Alter style should be finished.
-- Write Tests
+- Write Tests.
+- Forces between edges.
 - Report poster and videos.
 - Time is tight and hurry up
-- Documentation
+- Documentation.
