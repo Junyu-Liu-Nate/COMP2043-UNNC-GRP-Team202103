@@ -1,4 +1,5 @@
 from PyQt5.QtWidgets import *
+from PyQt5.QtWidgets import QApplication
 from PyQt5.QtGui import QPixmap, QIcon
 from PyQt5.QtCore import pyqtSignal, QFileInfo, QUrl
 
@@ -17,7 +18,10 @@ class enterPage(QWidget):
     def __init__(self):
         super(enterPage, self).__init__()
         # 调整窗口大小
-        self.resize(1600, 1200)
+        desktop = QApplication.desktop()
+        width = desktop.width()
+        height = desktop.height()
+        self.resize(int(width / 1.5), int(height / 1.5))
         # 窗口名
         self.setWindowTitle("OVRELAP")
         # 窗口图标

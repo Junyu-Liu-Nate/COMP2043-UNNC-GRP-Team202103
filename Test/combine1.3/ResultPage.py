@@ -6,7 +6,7 @@ from PyQt5.QtCore import pyqtSignal, QUrl, QFileInfo, QMutex
 from PyQt5.QtGui import QPixmap, QIcon, QImage
 from PyQt5.QtWebEngineWidgets import QWebEngineView
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QStackedWidget, QLabel, QFileDialog, QSplitter, \
-    QButtonGroup, QMessageBox
+    QButtonGroup, QMessageBox, QApplication
 from matplotlib import pyplot as plt
 from matplotlib.pyplot import figure
 
@@ -31,7 +31,10 @@ class resultPage(QWidget):
     def __init__(self):
         super(resultPage, self).__init__()
         self.patternNum = None
-        self.resize(1600, 1200)
+        desktop = QApplication.desktop()
+        width = desktop.width()
+        height = desktop.height()
+        self.resize(int(width/1.5), int(height/1.5))
         self.setWindowTitle("OVERLAP")
 
         pixIcon = PyQt5.QtGui.QPixmap("resource/icon.png")
@@ -157,12 +160,16 @@ class resultPage(QWidget):
         """Alter Style"""
         pageAS = QWidget()
         self.stackedWidget.addWidget(pageAS)  # index = 2
-        layoutAS = QHBoxLayout()
+        layoutAS = QVBoxLayout()
         pageAS.setLayout(layoutAS)
+        noticeLabel = QLabel("Please choose one style\n(Images below are for illustration only)")
+        layoutAS.addWidget(noticeLabel, 1)
+        layoutASB = QHBoxLayout()
+        layoutAS.addLayout(layoutASB, 9)
         layoutASCub = QVBoxLayout()
         layoutASCirc = QVBoxLayout()
-        layoutAS.addLayout(layoutASCub, 1)
-        layoutAS.addLayout(layoutASCirc, 1)
+        layoutASB.addLayout(layoutASCub, 1)
+        layoutASB.addLayout(layoutASCirc, 1)
 
         # 这里并没有给具体的checked
         self.btnASCub = createRadioBtn("Cubes")
@@ -203,9 +210,6 @@ class resultPage(QWidget):
         """radioButton Checked Effects"""
         self.btnASCub.toggled.connect(self.set_style)
         self.btnASCirc.toggled.connect(self.set_style)
-
-        #self.ansFBRadio1.toggled.connect(lambda: self.writeBtnFB(self.ansFBRadio1.text()))
-        #self.ansFBRadio2.toggled.connect(lambda: self.writeBtnFB(self.ansFBRadio2.text()))
 
     # 重写窗口resizeEvent
     def resizeEvent(self, a0: QtGui.QResizeEvent) -> None:
@@ -262,7 +266,9 @@ class resultPage(QWidget):
                 self.inputChoice = 1
                 self.btnASCub.setChecked(False)
                 self.btnASCirc.setChecked(True)
-            self.show()
+        self.figureSR = overlapDef.figurePrint(self.patternNum)
+        self.refreshCanvas()
+        self.show()
 
     def set_style(self):
         print("set Style")
@@ -290,11 +296,11 @@ class resultPage(QWidget):
     def refreshCanvas(self):
         print("refresh Canvas")
         # 设置Show DIFF
-        self.pixAfter = createLabPix("resource/afterFig.png")
-        for j in range(self.layoutSDAf.count()):  # 用这个把layoutSR中的控件删干净
-            self.layoutSDAf.itemAt(j).widget().deleteLater()
-        self.layoutSDAf.addWidget(self.pixAfter, 4)
-        self.layoutSDAf.addWidget(QLabel("After"), 1)
+        # self.pixAfter = createLabPix("resource/afterFig.png")
+        # for j in range(self.layoutSDAf.count()):  # 用这个把layoutSR中的控件删干净
+        #     self.layoutSDAf.itemAt(j).widget().deleteLater()
+        # self.layoutSDAf.addWidget(createLabPix("resource/afterFig.png"), 4)
+        # self.layoutSDAf.addWidget(QLabel("After"), 1)
 
         # 设置Show Result
         for i in range(self.layoutSR.count()):  # 用这个把layoutSR中的控件删干净
