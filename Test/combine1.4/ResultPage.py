@@ -208,8 +208,8 @@ class resultPage(QWidget):
         # btnFBover.clicked.connect(self.click_submit)
 
         """radioButton Checked Effects"""
-        self.btnASCub.toggled.connect(self.set_style)
-        self.btnASCirc.toggled.connect(self.set_style)
+        self.btnASCub.toggled.connect(self.set_styleCub)
+        self.btnASCirc.toggled.connect(self.set_styleCirc)
 
     # 重写窗口resizeEvent
     def resizeEvent(self, a0: QtGui.QResizeEvent) -> None:
@@ -270,7 +270,7 @@ class resultPage(QWidget):
         self.refreshCanvas()
         self.show()
 
-    def set_style(self):
+    def set_styleCub(self):
         print("set Style")
         # 选择Cub按钮, 想要改变为Cub
         if self.btnASCub.isChecked():
@@ -284,6 +284,8 @@ class resultPage(QWidget):
                     alert = QMessageBox(
                         QMessageBox.Warning, "Warning", "This will violate the code, selection failed")
                     alert.exec_()
+        self.refreshCanvas()
+    def set_styleCirc(self):
         # 选择Circ按钮, 想要改变为Circ
         if self.btnASCub.isChecked() is not True:
             if self.btnASCirc.isChecked():
