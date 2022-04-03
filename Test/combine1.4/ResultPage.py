@@ -296,15 +296,18 @@ class resultPage(QWidget):
     def refreshCanvas(self):
         print("refresh Canvas")
         # 设置Show DIFF
-        # self.pixAfter = createLabPix("resource/afterFig.png")
-        # for j in range(self.layoutSDAf.count()):  # 用这个把layoutSR中的控件删干净
-        #     self.layoutSDAf.itemAt(j).widget().deleteLater()
-        # self.layoutSDAf.addWidget(createLabPix("resource/afterFig.png"), 4)
-        # self.layoutSDAf.addWidget(QLabel("After"), 1)
+        for i in range(self.layoutSDBef.count()):
+            self.layoutSDBef.itemAt(i).widget().deleteLater()
+        self.layoutSDBef.addWidget(createLabPix("resource/beforeFig.png"), 4)
+        self.layoutSDBef.addWidget(QLabel("Before"), 1)
+        for j in range(self.layoutSDAf.count()):  # 用这个把layoutSR中的控件删干净
+            self.layoutSDAf.itemAt(j).widget().deleteLater()
+        self.layoutSDAf.addWidget(createLabPix("resource/afterFig.png"), 4)
+        self.layoutSDAf.addWidget(QLabel("After"), 1)
 
         # 设置Show Result
-        for i in range(self.layoutSR.count()):  # 用这个把layoutSR中的控件删干净
-            self.layoutSR.itemAt(i).widget().deleteLater()
+        for m in range(self.layoutSR.count()):  # 用这个把layoutSR中的控件删干净
+            self.layoutSR.itemAt(m).widget().deleteLater()
         self.figureSR = plt.gcf()
         self.canvasSR = FigureCanvas(self.figureSR)
         self.layoutSR.addWidget(self.canvasSR, 4)
