@@ -24,6 +24,7 @@ if __name__ == "__main__":
     # 窗口显示位置与大小可以相同
     enter.sign_toResult.connect(lambda: sameSize(enter, result))
     result.sign_toEnter.connect(lambda: sameSize(result, enter))
+    # result.sign_resize.connect(lambda: sameSize(enter, result))
 
     sys.exit(app.exec_())
 

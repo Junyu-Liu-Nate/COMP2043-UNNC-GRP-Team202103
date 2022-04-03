@@ -6,7 +6,7 @@ from PyQt5.QtCore import pyqtSignal, QUrl, QFileInfo, QMutex
 from PyQt5.QtGui import QPixmap, QIcon, QImage
 from PyQt5.QtWebEngineWidgets import QWebEngineView
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QStackedWidget, QLabel, QFileDialog, QSplitter, \
-    QButtonGroup, QMessageBox, QApplication
+    QButtonGroup, QMessageBox, QApplication, QGridLayout
 from matplotlib import pyplot as plt
 from matplotlib.pyplot import figure
 
@@ -24,6 +24,8 @@ from overlap.layoutAlgorithmOriginal import calLayout
 class resultPage(QWidget):
 
     sign_toEnter = pyqtSignal()
+    sign_resize = pyqtSignal()
+
     sign_showFigure = pyqtSignal()
     ans1Text = "no button"
     qmutx = QMutex()  # 线程锁
@@ -35,6 +37,7 @@ class resultPage(QWidget):
         width = desktop.width()
         height = desktop.height()
         self.resize(int(width/1.5), int(height/1.5))
+        # self.setFixedSize(int(width/1.5), int(height/1.5))
         self.setWindowTitle("OVERLAP")
 
         pixIcon = PyQt5.QtGui.QPixmap("resource/icon.png")
@@ -48,47 +51,47 @@ class resultPage(QWidget):
 
         self.initUI()
 
-    def calculateLayout(self, patternNum):
-        graphDemo = Graph()
-        graphDemo.readInput("resource/sample_input.txt", patternNum)
-
-        # Calculate the original layout
-        calLayout(graphDemo)
-        f, (ax1) = plt.subplots(1, 1, figsize=(10, 9))
-        f.subplots_adjust(hspace=0, wspace=0)
-
-        if patternNum == 1:
-            pattern1Draw(graphDemo, ax1, 1)
-        else:
-            pattern2Draw(graphDemo, ax1, 1)
-
-        plt.grid(False)
-        ax1.set_xlim(-6, 6)
-        ax1.set_ylim(-6, 6)
-
-        plt.savefig("resource/beforeFig.png")
-
-        # Calculate the layout after overlapping
-        windowRange = calOverlapLayout(graphDemo, patternNum)
-        zoomRatio = windowRange[1] / 6
-        if zoomRatio == 0:
-            zoomRatio = 1
-
-        # ----- Draw Overlapped Layout Graph -----#
-        # Specify the size of figure window
-        f, (ax2) = plt.subplots(1, 1, figsize=(10, 9))
-        f.subplots_adjust(hspace=0, wspace=0)
-
-        if patternNum == 1:
-            pattern1Draw(graphDemo, ax1, zoomRatio)
-        else:
-            pattern2Draw(graphDemo, ax1, zoomRatio)
-
-        plt.grid(False)
-        ax2.set_xlim(windowRange[0], windowRange[1])
-        ax2.set_ylim(windowRange[0], windowRange[1])
-
-        plt.savefig("resource/afterFig.png")
+    # def calculateLayout(self, patternNum):
+    #     graphDemo = Graph()
+    #     graphDemo.readInput("resource/sample_input.txt", patternNum)
+    #
+    #     # Calculate the original layout
+    #     calLayout(graphDemo)
+    #     f, (ax1) = plt.subplots(1, 1, figsize=(10, 9))
+    #     f.subplots_adjust(hspace=0, wspace=0)
+    #
+    #     if patternNum == 1:
+    #         pattern1Draw(graphDemo, ax1, 1)
+    #     else:
+    #         pattern2Draw(graphDemo, ax1, 1)
+    #
+    #     plt.grid(False)
+    #     ax1.set_xlim(-6, 6)
+    #     ax1.set_ylim(-6, 6)
+    #
+    #     plt.savefig("resource/beforeFig.png")
+    #
+    #     # Calculate the layout after overlapping
+    #     windowRange = calOverlapLayout(graphDemo, patternNum)
+    #     zoomRatio = windowRange[1] / 6
+    #     if zoomRatio == 0:
+    #         zoomRatio = 1
+    #
+    #     # ----- Draw Overlapped Layout Graph -----#
+    #     # Specify the size of figure window
+    #     f, (ax2) = plt.subplots(1, 1, figsize=(10, 9))
+    #     f.subplots_adjust(hspace=0, wspace=0)
+    #
+    #     if patternNum == 1:
+    #         pattern1Draw(graphDemo, ax1, zoomRatio)
+    #     else:
+    #         pattern2Draw(graphDemo, ax1, zoomRatio)
+    #
+    #     plt.grid(False)
+    #     ax2.set_xlim(windowRange[0], windowRange[1])
+    #     ax2.set_ylim(windowRange[0], windowRange[1])
+    #
+    #     plt.savefig("resource/afterFig.png")
 
     def initUI(self):
         # 整个Widget的layout
@@ -143,19 +146,24 @@ class resultPage(QWidget):
         """Show DIFF"""
         pageSD = QWidget()
         self.stackedWidget.addWidget(pageSD)  # index = 1
-        self.layoutSD = QHBoxLayout()
+        # self.layoutSD = QHBoxLayout()
+        self.layoutSD = QGridLayout()
         pageSD.setLayout(self.layoutSD)
-        self.layoutSDBef = QVBoxLayout()
-        self.layoutSDAf = QVBoxLayout()
-        self.layoutSD.addLayout(self.layoutSDBef, 1)
-        self.layoutSD.addLayout(self.layoutSDAf, 1)
-
-        pixBefore = createLabPix("resource/beforeFig.png")
-        self.layoutSDBef.addWidget(pixBefore, 4)
-        self.layoutSDBef.addWidget(QLabel("Before"), 1)
-        self.pixAfter = createLabPix("resource/afterFig.png")
-        self.layoutSDAf.addWidget(self.pixAfter, 4)
-        self.layoutSDAf.addWidget(QLabel("After"), 1)
+        self.layoutSD.addWidget(createLabPix("resource/beforeFig.png"), 0, 0, 4, 1)
+        self.layoutSD.addWidget(createLabPix("resource/afterFig.png"), 0, 1, 4, 1)
+        self.layoutSD.addWidget(QLabel("Before Overlap"), 4, 0, 1, 1)
+        self.layoutSD.addWidget(QLabel("After Overlap"), 4, 1, 1, 1)
+        # self.layoutSDBef = QVBoxLayout()
+        # self.layoutSDAf = QVBoxLayout()
+        # self.layoutSD.addLayout(self.layoutSDBef, 1)
+        # self.layoutSD.addLayout(self.layoutSDAf, 1)
+        #
+        # self.pixBefore = createLabPix("resource/beforeFig.png")
+        # self.layoutSDBef.addWidget(self.pixBefore, 4)
+        # self.layoutSDBef.addWidget(QLabel("Before"), 1)
+        # self.pixAfter = createLabPix("resource/afterFig.png")
+        # self.layoutSDAf.addWidget(self.pixAfter, 4)
+        # self.layoutSDAf.addWidget(QLabel("After"), 1)
 
         """Alter Style"""
         pageAS = QWidget()
@@ -249,7 +257,7 @@ class resultPage(QWidget):
 
     def method_handle_sign(self):
         print("handle")
-        self.stackedWidget.setCurrentIndex(0)
+        # self.stackedWidget.setCurrentIndex(0)
         self.btnSR.setChecked(True)
         # sample_input被传进来的时候就进行一次判断
         with open("resource/sample_input.txt", "r", encoding="utf-8") as patternSelect:
@@ -268,6 +276,8 @@ class resultPage(QWidget):
                 self.btnASCirc.setChecked(True)
         self.figureSR = overlapDef.figurePrint(self.patternNum)
         self.refreshCanvas()
+        # self.sign_resize.emit()
+        self.stackedWidget.setCurrentIndex(0)
         self.show()
 
     def set_styleCub(self):
@@ -298,14 +308,12 @@ class resultPage(QWidget):
     def refreshCanvas(self):
         print("refresh Canvas")
         # 设置Show DIFF
-        for i in range(self.layoutSDBef.count()):
-            self.layoutSDBef.itemAt(i).widget().deleteLater()
-        self.layoutSDBef.addWidget(createLabPix("resource/beforeFig.png"), 4)
-        self.layoutSDBef.addWidget(QLabel("Before"), 1)
-        for j in range(self.layoutSDAf.count()):  # 用这个把layoutSR中的控件删干净
-            self.layoutSDAf.itemAt(j).widget().deleteLater()
-        self.layoutSDAf.addWidget(createLabPix("resource/afterFig.png"), 4)
-        self.layoutSDAf.addWidget(QLabel("After"), 1)
+        for i in range(self.layoutSD.count()):  # 用这个把layoutSR中的控件删干净
+            self.layoutSD.itemAt(i).widget().deleteLater()
+        self.layoutSD.addWidget(createLabPix("resource/beforeFig.png"), 0, 0, 4, 1)
+        self.layoutSD.addWidget(createLabPix("resource/afterFig.png"), 0, 1, 4, 1)
+        self.layoutSD.addWidget(QLabel("Before Overlap"), 4, 0, 1, 1)
+        self.layoutSD.addWidget(QLabel("After Overlap"), 4, 1, 1, 1)
 
         # 设置Show Result
         for m in range(self.layoutSR.count()):  # 用这个把layoutSR中的控件删干净
