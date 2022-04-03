@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Bar Chart</title>
+</head>
+<body>
+<!-- 图表容器 DOM -->
+<div id="container" style="width: 600px;height:800px;"></div>
+<!-- 引入 highcharts.js -->
+<script src="highcharts.js"></script>
+<script>
+    // 图表配置
+    var ls = window.localStorage;
+    var str="";
+    var QA, QB, QC, QD;
+    QA=QB=QC=QD=0
+    var QAL, QBL, QCL, QDL;
+    QAL = [];
+    QBL = [];
+    QCL = [];
+    QDL = [];
+    for(var n=1; n<=22; n++)
+    {
+        str = ls.getItem(n.toString());
+        QA=QB=QC=QD=0
+        for(var i=0; i<str.length; i++)
+        {
+            if(str[i]==='A')
+            {
+                QA = QA+1;
+                continue;
+            }
+            if(str[i]==='B')
+            {
+                QB = QB+1;
+                continue;
+            }
+            if(str[i]==='C')
+            {
+                QC = QC+1;
+                continue;
+            }
+            if(str[i]==='D')
+            {
+                QD = QD+1;
+                // continue;
+            }
+        }
+        QAL[n-1] = QA;
+        QBL[n-1] = QB;
+        QCL[n-1] = QC;
+        QDL[n-1] = QD;
+    }
+    var options = {
+        chart: {
+            type: 'bar'                          //指定图表的类型，默认是折线图（line）
+        },
+        title: {
+            text: 'Overlap Feedback'                 // 标题
+        },
+        xAxis: {
+            // categories: ['苹果', '香蕉', '橙子']   // x 轴分类
+            categories: ['Q1', 'Q2', 'Q3']
+        },
+        yAxis: {
+            title: {
+                text: 'Sum of Options'                // y 轴标题
+            }
+        },
+        series: [{                              // 数据列
+            name: 'A',                        // 数据列名
+            data: QAL                    // 数据
+            // data: []
+        }, {
+            name: 'B',
+            data: QBL
+        }, {
+            name: 'C',
+            data: QCL
+        }, {
+            name: 'D',
+            data: QDL
+        }]
+    };
+    // 图表初始化函数
+    var chart = Highcharts.chart('container', options);
+</script>
+</body>
+</html>
