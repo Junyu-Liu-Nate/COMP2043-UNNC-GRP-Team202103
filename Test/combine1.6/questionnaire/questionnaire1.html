@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body
+        {
+            zoom: 2;
+        }
+        /*选项居中*/
+        input[type=radio], input[type=radio]+img{
+            vertical-align: middle;
+        }
+    </style>
+    <title>local storage test</title>
+</head>
+<body>
+<!--<form name="thisForm" method="post" action="" target="myIframe" onSubmit="return submits()">-->
+<form name="thisForm" method="post" action="illustration.html" onSubmit="return submits()">
+    <ol>
+        <li>Which one do you think easier and clearer to read?</li>
+        <label><input class="radio_type" type="radio" name="1" value="A" required>A<img src="10.jpg" width="150" height="150"></label>
+        <label><input class="radio_type" type="radio" name="1" value="B" required>B<img src="1.jpg" width="150" height="150"> </label>
+
+        <li>Which one do you think easier and clearer to read?</li>
+        <label><input class="radio_type" type="radio" name="2" value="A" required>A<img src="9.jpg" width="150" height="150"></label>
+        <label><input class="radio_type" type="radio" name="2" value="B" required>B<img src="1.jpg" width="150" height="150"> </label>
+
+        <li>Which one do you think easier and clearer to read?</li>
+        <label><input class="radio_type" type="radio" name="3" value="A" required>A<img src="4.jpg" width="150" height="150"></label>
+        <label><input class="radio_type" type="radio" name="3" value="B" required>B<img src="5.jpg" width="150" height="150"> </label>
+
+        <li>Which one do you think easier and clearer to read?</li>
+        <label><input class="radio_type" type="radio" name="4" value="A" required>A<img src="6.jpg" width="150" height="150"></label>
+        <label><input class="radio_type" type="radio" name="4" value="B" required>B<img src="7.jpg" width="150" height="150"> </label>
+
+        <li>Which one do you think easier and clearer to read?</li>
+        <label><input class="radio_type" type="radio" name="5" value="A" required>A<img src="2.jpg" width="150" height="150"></label>
+        <label><input class="radio_type" type="radio" name="5" value="B" required>B<img src="3.jpg" width="150" height="150"> </label>
+
+        <li>In which graph do you figure out the path from A to I?</li>
+        <label><input class="radio_type" type="radio" name="6" value="A" required>A<img src="10.jpg" width="150" height="150"></label>
+        <label><input class="radio_type" type="radio" name="6" value="B" required>B<img src="1.jpg" width="150" height="150"> </label>
+
+        <li>In which graph do you figure out the path from A to I?</li>
+        <label><input class="radio_type" type="radio" name="7" value="A" required>A<img src="9.jpg" width="150" height="150"></label>
+        <label><input class="radio_type" type="radio" name="7" value="B" required>B<img src="1.jpg" width="150" height="150"> </label>
+
+        <li>In which graph do you figure out the path from A to I?</li>
+        <label><input class="radio_type" type="radio" name="8" value="A" required>A<img src="4.jpg" width="150" height="150"></label>
+        <label><input class="radio_type" type="radio" name="8" value="B" required>B<img src="5.jpg" width="150" height="150"> </label>
+
+        <li>In which graph do you figure out the path from A to I?</li>
+        <label><input class="radio_type" type="radio" name="9" value="A" required>A<img src="4.jpg" width="150" height="150"></label>
+        <label><input class="radio_type" type="radio" name="9" value="B" required>B<img src="5.jpg" width="150" height="150"> </label>
+
+        <li>In which graph do you figure out the path from A to I?</li>
+        <label><input class="radio_type" type="radio" name="10" value="A" required>A<img src="6.jpg" width="150" height="150"></label>
+        <label><input class="radio_type" type="radio" name="10" value="B" required>B<img src="7.jpg" width="150" height="150"> </label>
+
+        <li>Which kind of graph do you think could solve a more complex data structure better?</li>
+        <label><input class="radio_type" type="radio" name="11" value="A" required>A<img src="6.jpg" width="150" height="150"></label>
+        <label><input class="radio_type" type="radio" name="11" value="B" required>B<img src="7.jpg" width="150" height="150"> </label>
+
+        <li>Do you think this kind of optimization increases rationality (shows the relationship in an understandable way) as you expected?</li>
+        <label><input class="radio_type" type="radio" name="12" value="A" required>A<img src="9.jpg" width="150" height="150"></label>
+        <label><input class="radio_type" type="radio" name="12" value="B" required>B<img src="1.jpg" width="150" height="150"> </label>
+
+        <li>Do you think this kind of optimization increases rationality (shows the relationship in an understandable way) as you expected?</li>
+        <label><input class="radio_type" type="radio" name="13" value="A" required>A<img src="2.jpg" width="150" height="150"></label>
+        <label><input class="radio_type" type="radio" name="13" value="B" required>B<img src="3.jpg" width="150" height="150"> </label>
+
+        <li>Which one do you think is easier to realize through code implementation?</li>
+        <label><input class="radio_type" type="radio" name="14" value="A" required>A<img src="6.jpg" width="150" height="150"></label>
+        <label><input class="radio_type" type="radio" name="14" value="B" required>B<img src="7.jpg" width="150" height="150"> </label>
+
+        <li>Which one do you think is easier to realize through code implementation?</li>
+        <label><input class="radio_type" type="radio" name="15" value="A" required>A<img src="2.jpg" width="150" height="150"></label>
+        <label><input class="radio_type" type="radio" name="15" value="B" required>B<img src="3.jpg" width="150" height="150"> </label>
+
+        <li>What advantage do you find of the edge compression graph over the Venn diagram? (Multiple Choice)</li>
+        <label><input class="multi-choice" type="checkbox" name="16" value="A">A. A clearer node structure</label><br/>
+        <label><input class="multi-choice" type="checkbox" name="16" value="B">B. A clearer relationship expression between single nodes</label><br/>
+        <label><input class="multi-choice" type="checkbox" name="16" value="C">C. A more rational (understandable) look</label><br/>
+        <label><input class="multi-choice" type="checkbox" name="16" value="D">D. A more rational (understandable) look</label><br/>
+        <img src="6.jpg" width="150" height="150"><img src="7.jpg" width="150" height="150"><br/>
+
+        <li>What advantage do you find of the edge compression graph over the Venn diagram? (Multiple Choice)</li>
+        <label><input class="multi-choice" type="checkbox" name="16" value="A">A. A clearer node structure</label><br/>
+        <label><input class="multi-choice" type="checkbox" name="16" value="B">B. A clearer relationship expression between single nodes</label><br/>
+        <label><input class="multi-choice" type="checkbox" name="16" value="C">C. A more rational (understandable) look</label><br/>
+        <label><input class="multi-choice" type="checkbox" name="16" value="D">D. A more rational (understandable) look</label><br/>
+        <img src="12.png" width="150" height="150"><img src="5.jpg" width="150" height="150"><br/>
+
+        <li>Do you think this technology could be used or be helpful in Computer Science?</li>
+        <label><input class="radio_type" type="radio" name="18" value="A" required>A. Yes</label>
+        <label><input class="radio_type" type="radio" name="18" value="B" required>B. No </label>
+
+        <li>Do you think this technology could be used or be helpful in Statistics?</li>
+        <label><input class="radio_type" type="radio" name="19" value="A" required>A. Yes</label>
+        <label><input class="radio_type" type="radio" name="19" value="B" required>B. No </label>
+
+        <li>Do you think this technology could be used or be helpful in science technical management?</li>
+        <label><input class="radio_type" type="radio" name="20" value="A" required>A. Yes</label>
+        <label><input class="radio_type" type="radio" name="20" value="B" required>B. No </label>
+
+        <li>Do you think this technology could be used in describing social character relationship?</li>
+        <label><input class="radio_type" type="radio" name="21" value="A" required>A. Yes</label>
+        <label><input class="radio_type" type="radio" name="21" value="B" required>B. No </label>
+
+        <li>Do you think this technology could be helpful in students' daily study?</li>
+        <label><input class="radio_type" type="radio" name="22" value="A" required>A. Yes</label>
+        <label><input class="radio_type" type="radio" name="22" value="B" required>B. No </label>
+    </ol>
+    <label>What improvement advice can you give to our user interface?: <input type="text" id="23" required></label>
+    <label>Other problems found during the experience?: <input type="text" id="24" required></label>
+    <button type="submit">Submit the Questionnaire</button>
+    <button type="button" onclick="clear()">Clear Local Storage</button>
+</form>
+<script type="text/javascript">
+    var ls= window.localStorage;
+
+    function showRe()
+    {
+        var key, value, i;
+        alert(ls.length);
+        for(i=0; i<ls.length; i++)
+        {
+            key = ls.key(i);
+            value = ls.getItem(key);
+            document.write(key+"->"+value+"<br>");
+        }
+    }
+
+    //在local storage中加入值
+    function setPairs(key, value)
+    {
+        //ls内有没有这个键, 如果没有证明是第一次, 那么先新建这个键
+        if(ls.getItem(key) == null)
+        {
+            ls.setItem(key, value);
+        }
+        else
+        {
+            var orig = ls.getItem(key);
+            ls.setItem(key, orig+value);    //拼接答案
+        }
+    }
+
+    //输入name, 获得这个name的value
+    //即检查这个name的选项, 哪一个radio是被选中的
+    function getValue(name)
+    {
+        // alert("getValue");
+        var radio, value, i;
+        radio = document.getElementsByName(name);
+        for(i=0; i<radio.length; i++)
+        {
+            if(radio[i].checked)
+            {
+                value = radio[i].value;
+                // alert(value);
+                //存储到local storage
+                setPairs(name, value);
+            }
+        }
+    }
+
+    function getText(id)
+    {
+        alert("getText");
+        var textIn, orig;
+        textIn = document.getElementById(id).value;
+        if(ls.getItem(id)==null)
+        {
+            ls.setItem(id, "text advice:<br>"+textIn);
+        }
+        else
+        {
+            orig = ls.getItem(id);
+            ls.setItem(id, orig+"<br>"+textIn);
+        }
+    }
+
+    function submits()
+    {
+        //按顺序拼接全部的答案[A, B, A, A, ...]
+        var i, numberOfR, numberOfT;
+        numberOfR = 22;
+        numberOfT = 24;
+        for(i=1; i<=numberOfR; i++)
+        {
+            getValue(i.toString());
+        }
+        for(i=numberOfR+1; i<=numberOfT; i++)
+        {
+            getText(i.toString());
+        }
+    }
+
+    //清空local storage
+    function clear()
+    {
+        ls.clear(); //清空表单
+    }
+
+
+</script>
+</body>
+</html>
