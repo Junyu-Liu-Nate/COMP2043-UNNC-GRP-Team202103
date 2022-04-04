@@ -1,5 +1,4 @@
 from matplotlib import pyplot as plt
-from matplotlib.pyplot import figure
 
 from overlap.graph import Graph
 from overlap.layoutAlgorithmOverlap import calOverlapLayout
@@ -7,8 +6,12 @@ from overlap.overlapPatten import pattern1Draw, pattern2Draw
 from overlap.layoutAlgorithmOriginal import calLayout
 
 
-# return figure to canvas
 def figurePrint(patternNum):
+    """
+    Create before and after overlap images and figure
+    :param patternNum: overlap pattern choice
+    :return: overlap figure
+    """
     graphDemo = Graph()
     graphDemo.readInput("resource/sample_input.txt", patternNum)
 

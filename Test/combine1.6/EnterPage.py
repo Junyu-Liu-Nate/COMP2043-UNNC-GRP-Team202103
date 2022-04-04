@@ -1,118 +1,107 @@
-from PyQt5.QtWidgets import *
-from PyQt5.QtWidgets import QApplication
+from PyQt5.QtWidgets import QApplication, QWidget, QGridLayout, QHBoxLayout, QVBoxLayout
 from PyQt5.QtGui import QPixmap, QIcon
-from PyQt5.QtCore import pyqtSignal, QFileInfo, QUrl
-
-from widgetsCreator import createBtn, createText, createRadioBtn, createLabPix, createHTML50, createHTML200, \
-    createHTML150, createHTML25
-
+from PyQt5.QtCore import pyqtSignal
+from widgetsCreator import createBtn, createHTML200, createHTML150, createHTML25
 
 from randomGenerator.main import rgGUI
 
 
-# 改单击拖动，双击打开新窗口
 class enterPage(QWidget):
-    # 一个可以转换QWidget的信号
-    sign_toResult = pyqtSignal()  # 定义为类属性, 不要放进__init__
+    """
+    The class offers the paradigm of the enter page of the program,
+    including the original appearance and def calls of functions:
+    generate random input and show the result page of the program.
+    Class variables: self.layoutBtnPE helps to resize the spacing
+    between buttons with the size of enter page window,
+    sign_toResult helps to change window.
+    """
+    sign_toResult = pyqtSignal()
 
     def __init__(self):
+        """
+        The def to initialize the enter page QWidget window
+        """
         super(enterPage, self).__init__()
-        # 调整窗口大小
+        self.layoutBtnPE = None
+        # resize the window
         desktop = QApplication.desktop()
         width = desktop.width()
         height = desktop.height()
         self.resize(int(width / 1.5), int(height / 1.5))
-        # 窗口名
-        self.setWindowTitle("OVRELAP")
-        # 窗口图标
+        # set window title
+        self.setWindowTitle("OVERLAP")
+        # set window icon
         pixIcon = QPixmap("resource/icon.png")
-        iconEP = QIcon(pixIcon)  # icon for Enter Page
+        iconEP = QIcon(pixIcon)
         self.setWindowIcon(iconEP)
-        # 美化界面
+        # add CSS styles to the page
         with open("resource/styleSettings.txt", "r") as self.style:
             textOfStyle = self.style.read()
             self.setStyleSheet(textOfStyle)
             self.style.close()
-        # 加载更多UI
-
+        # initialize more UI members
         self.initUI()
 
     def initUI(self):
-        # 给界面设置基础layout: GridLayout
+        """
+        Initialize the main page settings
+        :return: None
+        """
         layout = QGridLayout()
         self.setLayout(layout)
-
-        # 设置堆部件: StackedWidget
-        # 便于接下来设置界面切换: setCurrentIndex(n)
-        self.stackedWidget = QStackedWidget()
-        layout.addWidget(self.stackedWidget)
         pageEnter = QWidget()
-        pageRG = QWidget()
-        self.stackedWidget.addWidget(pageEnter)  # index = 0
-        self.stackedWidget.addWidget(pageRG)  # index = 1
+        layout.addWidget(pageEnter)
 
         """Page Enter"""
-        # 设置enterPage的Widget
-        # layout pageEnter
         layoutPE = QHBoxLayout()
         pageEnter.setLayout(layoutPE)
 
-        # Enter Page的按钮
+        # Set buttons layout and spacing
         self.layoutBtnPE = QVBoxLayout()
-        self.layoutBtnPE.setSpacing(20)  # 控件间的间隔
-        # layoutPE.addStretch(1000)
+        self.layoutBtnPE.setSpacing(20)
         layoutPE.addWidget(createHTML200(), 1000)
-        layoutPE.addLayout(self.layoutBtnPE, 1618)  # addLayout(layout, stretch)
-        # layoutPE.addStretch(1000)
+        layoutPE.addLayout(self.layoutBtnPE, 1618)
         layoutPE.addWidget(createHTML200(), 1000)
 
-        # btnCS = createBtn("Choose Style")
-        # btnRI = createBtn("Random Input")
-        # btnMI = createBtn("Manual Input")
         btnRG = createBtn("Random Generator")
         btnSR = createBtn("Show Result")
 
-        # self.layoutBtnPE.addStretch(8)
         self.layoutBtnPE.addWidget(createHTML150(), 8)
         self.layoutBtnPE.addWidget(btnRG, 2)
         self.layoutBtnPE.addWidget(btnSR, 2)
-        # self.layoutBtnPE.addStretch(1)
         self.layoutBtnPE.addWidget(createHTML25(), 1)
-
-        '''Page Random Generator'''
-        layoutRG = QHBoxLayout()
-        pageRG.setLayout(layoutRG)
-
-        btnGS = createBtn("Generate Random Seed")
-        btnGI = createBtn("Generate Random Input")
-        # label =
 
         """Button Clicked Effects"""
         btnRG.clicked.connect(self.click_goRG)
         btnSR.clicked.connect(self.click_goSR)
 
-        """radioButton Checked Effects"""
-        # self.btnCSCub.toggled.connect(self.set_globalCub)
-        # self.btnCSCirc.toggled.connect(self.set_globalCirc)
-
-        # """enter"""
-        # self.result = resultPage()
-    """重写窗口resizeEvent"""
     def resizeEvent(self, QResizeEvent):
-        self.layoutBtnPE.setSpacing(self.stackedWidget.height()/50)
-
-    """Methods for Change StackedPages"""
-    def click_goEnter(self):
-        self.stackedWidget.setCurrentIndex(0)
+        """
+        Rewrite the resizeEvent of the QWidget to
+        help resize the spacing between buttons
+        :param QResizeEvent: Detect the size change of window
+        :return: None
+        """
+        self.layoutBtnPE.setSpacing(self.height()/50)
 
     def click_goRG(self):
+        """
+        Pop up the window to generate random input
+        :return: None
+        """
         rgGUI()
-        #self.stackedWidget.setCurrentIndex(1)
 
     def click_goSR(self):
-        self.sign_toResult.emit()  # emit发射信号
-
+        """
+        Show the result page and hide enter page
+        :return: None
+        """
+        self.sign_toResult.emit()
         self.hide()
 
-    def method_handle_sign(self):  # 接收信号, main中使用connect
+    def method_handle_sign(self):
+        """
+        Handle the signal from ResultPage.py and show enter page
+        :return: None
+        """
         self.show()
