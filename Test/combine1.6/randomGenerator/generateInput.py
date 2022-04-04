@@ -4,8 +4,6 @@ from math import log10, exp, log2
 from string import ascii_uppercase
 from random import randint
 
-from sympy import false
-
 
 def generateInput(seed: int):
     # Keep all the literals generated to avoid repetition
