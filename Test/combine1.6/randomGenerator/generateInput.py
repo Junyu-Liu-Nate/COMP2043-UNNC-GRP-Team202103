@@ -4,8 +4,6 @@ from math import log10, exp, log2
 from string import ascii_uppercase
 from random import randint
 
-from sympy import false
-
 
 def generateInput(seed: int):
     # Keep all the literals generated to avoid repetition
@@ -213,12 +211,20 @@ def generateInput(seed: int):
         input = input + groupToStr(groupLeft, listToStr(mainNode)) + " "
         input = input + groupToStr(groupRight,
                                    listToStr(reverseList(mainNode))) + " "
+        ###########################!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!######################################
+        if overlappingLiteralsNum == 2:
+            mainNodeA = mainNode[0:len(mainNode) // 2 - 1]
+            tempA = [mainNode[len(mainNode) // 2 - 1]]
+            tempB = [mainNode[len(mainNode) // 2]]
+            mainNodeB = mainNode[len(mainNode) // 2+1:]
+            mainNode = mainNodeA+tempB+tempA+mainNodeB
+        ###########################!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!######################################
         input = input + groupToStr(groupMiddle,
                                    listToStr(reorganizeList(mainNode, len(
                                        mainNode) // 2 - 1, overlappingLiteralsNum))) + " "
         nodesGeneratedInGroups.append(tempNodesGenerated)
 
-    # Thirdly generate nodes
+    # Thirdly generate single nodes
     for s1 in range(singleNodesNum):
         tempNode = ""
         # The number of literals in a node
