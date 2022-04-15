@@ -13,10 +13,10 @@ This software is a application that visualizes the compressed graphs with possib
  - Download Final Project and use python to run GUImain.py in source code.
 
 ## User manual
-User manual: [Click to user manual.](./Final Project/documentation/userManual/userManual.md )
+User manual: [Click to user manual.](https://github.com/Junyu-Liu-Nate/GRPTeam202103/blob/main/Final%20Project/documentation/userManual/userManual.md)
 
 ## Test
-Test: [Click to test.](./Final Project/documentation/test/Test.md)
+Test: [Click to test.](https://github.com/Junyu-Liu-Nate/GRPTeam202103/blob/main/Final%20Project/documentation/test/Test.md)
 
 
 ## Supervisors information
