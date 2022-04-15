@@ -3,7 +3,7 @@
 
 ## About
 This software is a application that visualizes the compressed graphs with possibly overlapping supernodes. The software can draw a simplified diagram by reading the input from random generator. User could compare the simplified diagram with not simplified diagram and export the simplified one by using this software.  
-![Homepage](./Final Project/documentation/userManual/images/homePage.png ) 
+![Homepage](https://github.com/Junyu-Liu-Nate/GRPTeam202103/blob/main/Final%20Project/documentation/userManual/images/homePage.png) 
 
 ## Environment requirements
  - operating system: windows only.
