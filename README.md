@@ -3,7 +3,7 @@
 
 ## About
 This software is a application that visualizes the compressed graphs with possibly overlapping supernodes. The software can draw a simplified diagram by reading the input from random generator. User could compare the simplified diagram with not simplified diagram and export the simplified one by using this software.  
-![Homepage](/Final Project/documentation/userManual/images/homePage.png ) 
+![Homepage](./Final Project/documentation/userManual/images/homePage.png ) 
 
 ## Environment requirements
  - operating system: windows only.
@@ -13,10 +13,10 @@ This software is a application that visualizes the compressed graphs with possib
  - Download Final Project and use python to run GUImain.py in source code.
 
 ## User manual
-User manual: [Click to user manual.](/Final Project/documentation/userManual/userManual.md )
+User manual: [Click to user manual.](./Final Project/documentation/userManual/userManual.md )
 
 ## Test
-Test: [Click to test.](/Final Project/documentation/test/Test.md)
+Test: [Click to test.](./Final Project/documentation/test/Test.md)
 
 
 ## Supervisors information
